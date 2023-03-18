@@ -7,11 +7,11 @@ namespace Lab1Gluschenko
 {
     class MatrixCalculation
     {
-        private List<List<double>> _generalMatrix = new List<List<double>>() { 
+        private List<List<double>> _generalMatrix = new List<List<double>>() {
             new List<double>{1, 0, 0, 0},
             new List<double>{0, 1, 0, 0},
             new List<double>{0, 0, 1, 0},
-            new List<double>{0, 0, 0, 1}, 
+            new List<double>{0, 0, 0, 1},
         };
 
         private Point3D pointMultiply(Point3D point, List<List<double>> matrix)
@@ -67,15 +67,36 @@ namespace Lab1Gluschenko
             this._generalMatrix = MatrixMultiply(this._generalMatrix, temp);
         }
 
-        public void CreateRotatedPointsArray(List<List<Point3D>> oldPoints, int uN, int vN)
+        public Point3D[][] CreateRotatedPointsArray(List<List<Point3D>> oldPoints, int uN, int vN)
         {
-            List<List<Point3D>> rotatedPoints = new List<List<Point3D>>();
+            Point3D[][] rotatedPoints = new Point3D[uN][];
             for (int i = 0; i < uN; i++)
             {
-                rotatedPoints.Add(new List<Point3D>());
+                rotatedPoints[i] = new Point3D[vN];
                 for (int j = 0; j < vN; j++)
                 {
-                    rotatedPoints[i].Add(pointMultiply(oldPoints[i][j], _generalMatrix));
+                    rotatedPoints[i][j] = pointMultiply(oldPoints[i][j], _generalMatrix);
+                }
+            }
+            return rotatedPoints;
+        }
+
+        public void createScreenpoints(Point3D[][] rotadedPoints)
+        {
+            List<List<double>> ones = new List<List<double>>() {
+                new List<double>{1, 0, 0, 0},
+                new List<double>{0, 1, 0, 0},
+                new List<double>{0, 0, 0, 0},
+                new List<double>{0, 0, 0, 1},
+            };
+
+            Point3D[][] screenPoints = new Point3D[rotadedPoints.GetLength(0)][];
+            for (int i = 0; i < rotadedPoints.GetLength(0); i++)
+            {
+                screenPoints[i] = new Point3D[rotadedPoints.GetLength(1)];
+                for (int j = 0; j < rotadedPoints.GetLength(1); j++)
+                {
+                    screenPoints[i][j] = pointMultiply(rotadedPoints[i][j], ones);
                 }
             }
         }

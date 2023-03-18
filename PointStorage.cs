@@ -6,24 +6,25 @@ using System.Threading.Tasks;
 
 namespace Lab1Gluschenko
 {
-    static class PointStorage
+    class PointStorage
     {
-        static List<Point3D> _point3DList = new List<Point3D>();
+        private static Point3D[][] _point3DList;
 
-        public static void Add(Point3D point)
+        public PointStorage(int N1, int N2)
         {
-            _point3DList.Add(point);
+            _point3DList = new Point3D[N1][];
+            for (int i = 0; i < N1; i++)
+                _point3DList[i] = new Point3D[N2];
         }
 
-        public static int AddPoint3DListIndex(Point3D point)
+        public static void Add(Point3D point, int i, int j)
         {
-            _point3DList.Add(point);
-            return _point3DList.Count - 1;
+            _point3DList[i][j] = point;
         }
 
-        public static Point3D Get(int index)
+        public static Point3D Get(int i, int j)
         {
-            return _point3DList[index];
+            return _point3DList[i][j];
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Lab1Gluschenko
 {
     class Calculations
     {
-        public void CreatePoints(int uN, int vN, int uMax, int vMax, int uMin, int vMin)
+        public void GeneratePointsAndTriangles(int uN, int vN, int uMax, int vMax, int uMin, int vMin)
         {
             double du = Math.Abs(uMax - uMin) / uN;
             double dv = Math.Abs(vMax - vMin) / vN;
@@ -41,6 +41,23 @@ namespace Lab1Gluschenko
                     triangles.Add(new Triangle((i + 1, j + 1), (i, j + 1), (i + 1, j)));
                 }
             }
+        }
+
+        public MatrixCalculation CreateRotatedMatrix(int psi, int hi, int fi)
+        {
+            MatrixCalculation rotatedMatrix = new MatrixCalculation();
+            rotatedMatrix.RotateX(psi);
+            rotatedMatrix.RotateY(hi);
+            rotatedMatrix.RotateZ(fi);
+
+            return rotatedMatrix;
+        }
+
+        public void Proection()
+        {
+            //MatrixCalculation rotatedMatrix = CreateRotatedMatrix();
+            //Point3D[][] rotatedPoints = rotatedMatrix.CreateRotatedPointsArray()
+            //Point3D[][] screenPoints = rotatedMatrix.createScreenpoints()
         }
     }
 }
