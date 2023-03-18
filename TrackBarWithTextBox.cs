@@ -104,5 +104,15 @@ namespace Lab1Gluschenko
 
             return _lastCorrectValue;
         }
+
+        public int GetMinValue()
+        {
+            return _trackBar.Minimum;
+        }
+
+        public int GetMaxValue()
+        {
+            return _trackBar.Maximum;
+        }
     }
 }

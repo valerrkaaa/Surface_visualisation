@@ -34,4 +34,22 @@ namespace Lab1Gluschenko
             return new List<double>() { x, y, z, w };
         }
     }
+
+    class Point2D
+    {
+        public double x;
+        public double y;
+
+        public Point2D(double x, double y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+
+        public Point2D(List<double> rawArray)
+        {
+            this.x = rawArray[0];
+            this.y = rawArray[1];
+        }
+    }
 }

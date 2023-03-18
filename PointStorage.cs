@@ -26,5 +26,10 @@ namespace Lab1Gluschenko
         {
             return _point3DList[i][j];
         }
+
+        public static Point3D[][] Get2DArray()
+        {
+            return _point3DList;
+        }
     }
 }

@@ -8,22 +8,22 @@ namespace Lab1Gluschenko
 {
     class Calculations
     {
-        public void GeneratePointsAndTriangles(int uN, int vN, int uMax, int vMax, int uMin, int vMin)
+        public static List<Triangle> GeneratePointsAndTriangles(int uN, int vN, int uMax, int vMax, int uMin, int vMin)
         {
-            double du = Math.Abs(uMax - uMin) / uN;
-            double dv = Math.Abs(vMax - vMin) / vN;
+            double du = (double)(Math.Abs(uMax - uMin)) / uN;
+            double dv = (double)(Math.Abs(vMax - vMin)) / vN;
 
             double u = uMin;
             double v = vMin;
 
             for (int i = 0; i < uN; i++)
             {
-                for (int j = 0; j < vN; i++)
+                for (int j = 0; j < vN; j++)
                 {
                     PointStorage.Add(new Point3D(
-                        (double)(5 * Math.Sin(u) * Math.Cos(v)),
-                        (double)(5 * Math.Sin(u) * Math.Sin(v)),
-                        (double)(5 * Math.Cos(u)),
+                        (double)(200 * Math.Sin(v) * Math.Cos(v) * Math.Sin(u)),
+                        (double)(200 * Math.Sin(v) * Math.Sin(u)),
+                        (double)(200 * Math.Cos(u)),
                         1), 
                         i, j);
                     v += dv;
@@ -33,31 +33,30 @@ namespace Lab1Gluschenko
 
             List<Triangle> triangles = new List<Triangle>();
 
-            for (int i = 0; i < u; i++)
+            for (int i = 0; i < uN - 1; i++)
             {
-                for (int j = 0; j < v; j++)
+                for (int j = 0; j < vN - 1; j++)
                 {
                     triangles.Add(new Triangle((i, j), (i, j + 1), (i + 1, j)));
                     triangles.Add(new Triangle((i + 1, j + 1), (i, j + 1), (i + 1, j)));
                 }
             }
+
+            return triangles;
         }
 
-        public MatrixCalculation CreateRotatedMatrix(int psi, int hi, int fi)
+        public static Point2D[][] Proection(Point3D[][] points, int psi, int hi, int fi, int uN, int vN)
         {
+            // Создание матриц поворота
             MatrixCalculation rotatedMatrix = new MatrixCalculation();
             rotatedMatrix.RotateX(psi);
             rotatedMatrix.RotateY(hi);
             rotatedMatrix.RotateZ(fi);
 
-            return rotatedMatrix;
-        }
 
-        public void Proection()
-        {
-            //MatrixCalculation rotatedMatrix = CreateRotatedMatrix();
-            //Point3D[][] rotatedPoints = rotatedMatrix.CreateRotatedPointsArray()
-            //Point3D[][] screenPoints = rotatedMatrix.createScreenpoints()
+            Point3D[][] rotatedPoints = rotatedMatrix.CreateRotatedPointsArray(points, uN, vN);
+            Point2D[][] screenPoints = rotatedMatrix.CreateScreenpoints(rotatedPoints);
+            return screenPoints;
         }
     }
 }

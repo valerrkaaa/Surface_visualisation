@@ -8,9 +8,9 @@ namespace Lab1Gluschenko
 {
     class Triangle
     {
-        (int i, int j) point1Index;
-        (int i, int j) point2Index;
-        (int i, int j) point3Index;
+        public (int i, int j) point1Index;
+        public (int i, int j) point2Index;
+        public (int i, int j) point3Index;
 
         public Triangle((int i, int j) point1Index, (int i, int j) point2Index, (int i, int j) point3Index)
         {

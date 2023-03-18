@@ -16,6 +16,8 @@ namespace Lab1Gluschenko
         private List<(string fieldType, int id, int value)> historyLog = new List<(string fieldType, int id, int value)>();  //  хранит историю действий пользователя
         private List<(string fieldType, int id, int value)> futureHistoryLog = new List<(string fieldType, int id, int value)>();  // хранит события, которые пользователь откатил
 
+        private List<Triangle> triangles;
+
         private Color unColor = Color.Red;
         private Color outColor = Color.Blue;
 
@@ -76,6 +78,61 @@ namespace Lab1Gluschenko
 
             coloredPanel1.BackColor = unColor;
             coloredPanel2.BackColor = outColor;
+
+            int psi = _tb_pairs[0].GetValue();
+            int hi = _tb_pairs[1].GetValue();
+            int fi = _tb_pairs[2].GetValue();
+            int uN = _tb_pairs[3].GetValue();
+            int vN = _tb_pairs[4].GetValue();
+            int uMin = _tb_pairs[5].GetMinValue();
+            int uMax = uN;
+            int vMin = _tb_pairs[6].GetMinValue();
+            int vMax = vN;
+
+            //new MatrixCalculation().Test();
+
+            new PointStorage(uN, vN);
+            triangles = Calculations.GeneratePointsAndTriangles(uN, vN, uMax, vMax, uMin, vMin);
+            var a = PointStorage.Get2DArray();
+            Point2D[][] screenPoints = Calculations.Proection(PointStorage.Get2DArray(), psi, fi, hi, uN, vN);
+
+            int centerX = pictureBox1.Width / 2;
+            int centerY = pictureBox1.Height / 2;
+
+            Bitmap bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            using (Graphics g = Graphics.FromImage(bitmap))
+            {
+                Console.WriteLine((float)(screenPoints[triangles[0].point1Index.i][triangles[0].point1Index.j].x));
+                Console.WriteLine((float)(screenPoints[triangles[0].point1Index.i][triangles[0].point1Index.j].y));
+                Console.WriteLine((float)(screenPoints[triangles[0].point2Index.i][triangles[0].point2Index.j].x));
+                Console.WriteLine((float)(screenPoints[triangles[0].point2Index.i][triangles[0].point2Index.j].y));
+                foreach (Triangle triangle in triangles)
+                {
+                    g.DrawLine(new Pen(Color.Black, 2), 
+                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].x + centerX), 
+                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].y + centerY),
+                        
+                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].x + centerX), 
+                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].y + centerY)
+                        );
+                    g.DrawLine(new Pen(Color.Black, 2), 
+                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].x + centerX), 
+                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].y + centerY),
+                        
+                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].x + centerX), 
+                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].y + centerY)
+                        );
+                    g.DrawLine(new Pen(Color.Black, 2), 
+                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].x + centerX), 
+                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].y + centerY),
+                        
+                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].x + centerX), 
+                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].y + centerY)
+                        );
+                }
+                //g.DrawLine(new Pen(Color.Black, 5), 0, 0, 100, 100);
+            }
+            pictureBox1.Image = bitmap;
         }
 
         private void AddEventToHistoryLog(string fieldType, int id, int value)
