@@ -224,14 +224,14 @@
             // 
             this.trackBarU.Location = new System.Drawing.Point(36, 22);
             this.trackBarU.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.trackBarU.Maximum = 20;
-            this.trackBarU.Minimum = 10;
+            this.trackBarU.Maximum = 200;
+            this.trackBarU.Minimum = 2;
             this.trackBarU.Name = "trackBarU";
             this.trackBarU.Size = new System.Drawing.Size(156, 45);
             this.trackBarU.TabIndex = 0;
             this.trackBarU.TabStop = false;
             this.trackBarU.UseWaitCursor = true;
-            this.trackBarU.Value = 10;
+            this.trackBarU.Value = 2;
             // 
             // textBoxU
             // 
@@ -255,14 +255,14 @@
             // 
             this.trackBarV.Location = new System.Drawing.Point(36, 63);
             this.trackBarV.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.trackBarV.Maximum = 20;
-            this.trackBarV.Minimum = 10;
+            this.trackBarV.Maximum = 200;
+            this.trackBarV.Minimum = 2;
             this.trackBarV.Name = "trackBarV";
             this.trackBarV.Size = new System.Drawing.Size(156, 45);
             this.trackBarV.TabIndex = 4;
             this.trackBarV.TabStop = false;
             this.trackBarV.UseWaitCursor = true;
-            this.trackBarV.Value = 10;
+            this.trackBarV.Value = 2;
             // 
             // textBoxV
             // 

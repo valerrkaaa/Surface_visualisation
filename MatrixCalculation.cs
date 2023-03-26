@@ -33,7 +33,7 @@ namespace Lab1Gluschenko
                 for (int col = 0; col < B[0].Count; col++)
                 {
                     outputArray[row].Add(0);
-                    for (int i = 0; i < A.Count; i++)
+                    for (int i = 0; i < B.Count; i++)
                     {
                         outputArray[row][col] += A[row][i] * B[i][col];
                     }
@@ -42,36 +42,20 @@ namespace Lab1Gluschenko
             return outputArray;
         }
 
-        //public void Test()
-        //{
-        //    List<List<double>> a = new List<List<double>>() {
-        //    new List<double>{1, 2, 3, 4},
-        //    new List<double>{5, 6, 7, 8},
-        //    new List<double>{9, 10, 11, 12},
-        //    new List<double>{13, 14, 15, 16},
-        //    };
-        //    List<List<double>> b = new List<List<double>>() {
-        //    new List<double>{1, 2, 3, 4},
-        //    new List<double>{5, 6, 7, 8},
-        //    new List<double>{9, 10, 11, 12},
-        //    new List<double>{13, 14, 15, 16},
-        //    };
-        //var a11 = MatrixMultiply(a, b);
-        //    Console.WriteLine();
-        //}
-
         public void RotateX(double psi)
         {
+            psi = psi * Math.PI / 180;
             List<List<double>> temp = new List<List<double>>() {
                 new List<double>{1, 0, 0, 0},
-                new List<double>{0, Math.Cos(psi), 0, 0},
-                new List<double>{0, 0, 1, 0},
+                new List<double>{0, Math.Cos(psi), Math.Sin(psi), 0},
+                new List<double>{0, -Math.Sin(psi), Math.Cos(psi), 0},
                 new List<double>{0, 0, 0, 1},
             };
             this._generalMatrix = MatrixMultiply(this._generalMatrix, temp);
         }
         public void RotateY(double hi)
         {
+            hi = hi * Math.PI / 180;
             List<List<double>> temp = new List<List<double>>() {
                 new List<double>{Math.Cos(hi), 0, -Math.Sin(hi), 0},
                 new List<double>{0, 1, 0, 0},
@@ -82,6 +66,7 @@ namespace Lab1Gluschenko
         }
         public void RotateZ(double fi)
         {
+            fi = fi * Math.PI / 180;
             List<List<double>> temp = new List<List<double>>() {
                 new List<double>{Math.Cos(fi), Math.Sin(fi), 0, 0},
                 new List<double>{-Math.Sin(fi), Math.Cos(fi), 0, 0},
@@ -123,6 +108,14 @@ namespace Lab1Gluschenko
                     screenPoints[i][j] = point2DMultiply(rotadedPoints[i][j], ones);
                 }
             }
+            //for (int i = 0; i < rotadedPoints.Length; i++)
+            //{
+            //    for (int j = 0; j < rotadedPoints[0].Length; j++)
+            //    {
+            //        screenPoints[i][j].x = screenPoints[i][j].x + 10;
+            //        screenPoints[i][j].y = screenPoints[i][j].y + 10;
+            //    }
+            //}
             return screenPoints;
         }
     }

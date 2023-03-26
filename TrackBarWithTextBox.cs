@@ -31,6 +31,8 @@ namespace Lab1Gluschenko
             _lastCorrectValue = trackBar.Value;
             _previousValue = _lastCorrectValue;
 
+            _textBox.Text = _lastCorrectValue.ToString();
+
             _trackBar.ValueChanged += TrackBarValueChanged;
             _trackBar.MouseUp += TrackBarMouseUp;
             _textBox.TextChanged += TextBoxTextChanged;

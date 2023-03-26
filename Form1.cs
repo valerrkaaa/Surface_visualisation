@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Lab1Gluschenko
@@ -63,6 +58,8 @@ namespace Lab1Gluschenko
             _tb_pairs[12].SetValue(outColor.R);
             _tb_pairs[13].SetValue(outColor.G);
             _tb_pairs[14].SetValue(outColor.B);
+
+            RefreshPictureBox();
         }
 
         private void RefreshPictureBox()
@@ -70,6 +67,7 @@ namespace Lab1Gluschenko
             /*
              * Отрисовывает картинку
              */
+
             Console.WriteLine("refresh");
 
             // Перерисовывает предпросмотр цветов
@@ -93,7 +91,6 @@ namespace Lab1Gluschenko
 
             new PointStorage(uN, vN);
             triangles = Calculations.GeneratePointsAndTriangles(uN, vN, uMax, vMax, uMin, vMin);
-            var a = PointStorage.Get2DArray();
             Point2D[][] screenPoints = Calculations.Proection(PointStorage.Get2DArray(), psi, fi, hi, uN, vN);
 
             int centerX = pictureBox1.Width / 2;
@@ -102,35 +99,31 @@ namespace Lab1Gluschenko
             Bitmap bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             using (Graphics g = Graphics.FromImage(bitmap))
             {
-                Console.WriteLine((float)(screenPoints[triangles[0].point1Index.i][triangles[0].point1Index.j].x));
-                Console.WriteLine((float)(screenPoints[triangles[0].point1Index.i][triangles[0].point1Index.j].y));
-                Console.WriteLine((float)(screenPoints[triangles[0].point2Index.i][triangles[0].point2Index.j].x));
-                Console.WriteLine((float)(screenPoints[triangles[0].point2Index.i][triangles[0].point2Index.j].y));
                 foreach (Triangle triangle in triangles)
                 {
-                    g.DrawLine(new Pen(Color.Black, 2), 
-                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].x + centerX), 
+                    //g.FillPolygon();
+                    g.DrawLine(new Pen(Color.Black, 1),
+                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].x + centerX),
                         (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].y + centerY),
-                        
-                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].x + centerX), 
+
+                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].x + centerX),
                         (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].y + centerY)
                         );
-                    g.DrawLine(new Pen(Color.Black, 2), 
-                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].x + centerX), 
+                    g.DrawLine(new Pen(Color.Black, 1),
+                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].x + centerX),
                         (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].y + centerY),
-                        
-                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].x + centerX), 
+
+                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].x + centerX),
                         (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].y + centerY)
                         );
-                    g.DrawLine(new Pen(Color.Black, 2), 
-                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].x + centerX), 
+                    g.DrawLine(new Pen(Color.Black, 1),
+                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].x + centerX),
                         (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].y + centerY),
-                        
-                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].x + centerX), 
+
+                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].x + centerX),
                         (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].y + centerY)
                         );
                 }
-                //g.DrawLine(new Pen(Color.Black, 5), 0, 0, 100, 100);
             }
             pictureBox1.Image = bitmap;
         }

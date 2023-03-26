@@ -20,12 +20,25 @@ namespace Lab1Gluschenko
             {
                 for (int j = 0; j < vN; j++)
                 {
+                    //PointStorage.Add(new Point3D(
+                    //    (double)(50 * Math.Sin(v) * Math.Cos(v) * Math.Sin(u)),
+                    //    (double)(50 * Math.Sin(v) * Math.Cos(u)),
+                    //    (double)(50 * Math.Cos(u)),
+                    //    1),
+                    //    i, j);
+                    //                PointStorage.Add(new Point3D(
+                    //(double)(50 * Math.Cos(u) * Math.Cos(v)),
+                    //(double)(50 * Math.Sin(u) * Math.Cos(v)),
+                    //(double)(50 * Math.Sin(v)),
+                    //1),
+                    //i, j);
                     PointStorage.Add(new Point3D(
-                        (double)(200 * Math.Sin(v) * Math.Cos(v) * Math.Sin(u)),
-                        (double)(200 * Math.Sin(v) * Math.Sin(u)),
-                        (double)(200 * Math.Cos(u)),
-                        1), 
+                        (double)(150 * Math.Sin(u) * Math.Cos(v)),
+                        (double)(150 * Math.Sin(u) * Math.Sin(v)),
+                        (double)(150 * Math.Cos(u)),
+                        1),
                         i, j);
+
                     v += dv;
                 }
                 u += du;
@@ -33,12 +46,14 @@ namespace Lab1Gluschenko
 
             List<Triangle> triangles = new List<Triangle>();
 
+            var a = PointStorage.Get2DArray();
             for (int i = 0; i < uN - 1; i++)
             {
                 for (int j = 0; j < vN - 1; j++)
                 {
-                    triangles.Add(new Triangle((i, j), (i, j + 1), (i + 1, j)));
-                    triangles.Add(new Triangle((i + 1, j + 1), (i, j + 1), (i + 1, j)));
+                    triangles.Add(new Triangle((i, j), (i, j + 1), (i + 1, (j + 9) % (vN - 1))));
+                    //triangles.Add(new Triangle((i, j), (i, j + 1), (i + 1, j)));
+                    //triangles.Add(new Triangle((i + 1, j + 1), (i, j + 1), (i + 1, j)));
                 }
             }
 
@@ -55,6 +70,7 @@ namespace Lab1Gluschenko
 
 
             Point3D[][] rotatedPoints = rotatedMatrix.CreateRotatedPointsArray(points, uN, vN);
+
             Point2D[][] screenPoints = rotatedMatrix.CreateScreenpoints(rotatedPoints);
             return screenPoints;
         }
