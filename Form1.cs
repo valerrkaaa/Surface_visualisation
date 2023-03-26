@@ -99,33 +99,60 @@ namespace Lab1Gluschenko
             Bitmap bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             using (Graphics g = Graphics.FromImage(bitmap))
             {
-                foreach (Triangle triangle in triangles)
+                for (int i = 0; i < 2 * uN * vN; i++)
                 {
-                    //g.FillPolygon();
-                    g.DrawLine(new Pen(Color.Black, 1),
-                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].x + centerX),
-                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].y + centerY),
+                    float Nx = 0; float Ny = 0; float Nz = 0;
+                    for (int ii = 0; ii <= 2; ii++)
+                    {
+                        int j = 0;
+                        if ((i % 2 == 0) && (ii == 2))
+                        {
+                            j = 0;
+                        }
+                        else
+                        {
+                            if ((i % 2 == 0) && (ii != 2))
+                            {
+                                j = ii + 1;
+                            }
+                            else
+                            {
+                                if ((i % 2 != 0) && (ii == 0))
+                                {
+                                    j = 2;
+                                }
+                                else
+                                {
+                                    if ((i % 2 != 0) && (ii != 0))
+                                    {
+                                        j = ii - 1;
+                                    }
+                                }
 
-                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].x + centerX),
-                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].y + centerY)
-                        );
-                    g.DrawLine(new Pen(Color.Black, 1),
-                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].x + centerX),
-                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].y + centerY),
+                            }
 
-                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].x + centerX),
-                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].y + centerY)
-                        );
-                    g.DrawLine(new Pen(Color.Black, 1),
-                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].x + centerX),
-                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].y + centerY),
+                        }
 
-                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].x + centerX),
-                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].y + centerY)
-                        );
+                        Nx += (RotatedPoints3D[(int)Triangle[i, ii].i, (int)Triangle[i, ii].j].y - RotatedPoints3D[(int)Triangle[i, j].i, (int)Triangle[i, j].j].y) * (RotatedPoints3D[(int)Triangle[i, ii].i, (int)Triangle[i, ii].j].z + RotatedPoints3D[(int)Triangle[i, j].i, (int)Triangle[i, j].j].z);
+                        Ny += (RotatedPoints3D[(int)Triangle[i, ii].i, (int)Triangle[i, ii].j].z - RotatedPoints3D[(int)Triangle[i, j].i, (int)Triangle[i, j].j].z) * (RotatedPoints3D[(int)Triangle[i, ii].i, (int)Triangle[i, ii].j].x + RotatedPoints3D[(int)Triangle[i, j].i, (int)Triangle[i, j].j].x);
+                        Nz += (RotatedPoints3D[(int)Triangle[i, ii].i, (int)Triangle[i, ii].j].x - RotatedPoints3D[(int)Triangle[i, j].i, (int)Triangle[i, j].j].x) * (RotatedPoints3D[(int)Triangle[i, ii].i, (int)Triangle[i, ii].j].y + RotatedPoints3D[(int)Triangle[i, j].i, (int)Triangle[i, j].j].y);
+                    }
+                    double cos = 0;
+                    cos = (float)(Nz / Math.Sqrt(Math.Pow(Nx, 2) + Math.Pow(Ny, 2) + Math.Pow(Nz, 2)));
+                    Color color = new Color();
+                    if (cos >= 0) color = panel6.BackColor;
+                    else color = panel7.BackColor;
+                    color = Color.FromArgb((byte)color.A, (byte)(color.R * Math.Abs(cos)), (byte)(color.G * Math.Abs(cos)), (byte)(color.B * Math.Abs(cos)));
+                    Point[] Polygons = new Point[3];
+                    for (int j = 0; j < 3; j++)
+                    {
+                        Polygons[j] = new Point((int)Points2D[(int)Triangle[i, j].i, (int)Triangle[i, j].j].x, (int)Points2D[(int)Triangle[i, j].i, (int)Triangle[i, j].j].y);
+                    }
+                    g.FillPolygon(new SolidBrush(color), Polygons);
                 }
             }
             pictureBox1.Image = bitmap;
+            pictureBox1.Invalidate();
         }
 
         private void AddEventToHistoryLog(string fieldType, int id, int value)
