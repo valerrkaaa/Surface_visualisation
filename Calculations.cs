@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab1Gluschenko
 {
     class Calculations
     {
-        public static List<Triangle> GeneratePointsAndTriangles(double uN, double vN, double uMax, double vMax, int R)
+        public static List<Triangle> GeneratePointsAndPolygons(double uN, double vN, double uMax, double vMax, int R, int r)
         {
             double du = uMax / uN;
             double dv = vMax / vN;
-
             double u = 0;
             double v = 0;
 
+
+            // генерация точек в соответствии с параметрическим уравнением
             for (int i = 0; i < uN + 1; i++)
             {
                 for (int j = 0; j < vN + 1; j++)
@@ -26,12 +24,15 @@ namespace Lab1Gluschenko
                     //    (double)(50 * Math.Cos(u)),
                     //    1),
                     //    i, j);
+                    
+                    // sphere:
                     PointStorage.Add(new Point3D(
-    (double)(R * Math.Cos(u) * Math.Cos(v)),
-    (double)(R * Math.Sin(u) * Math.Cos(v)),
-    (double)(R * Math.Sin(v)),
-    1),
-    i, j);
+                        (double)(R * Math.Cos(u) * Math.Cos(v)),
+                        (double)(R * Math.Sin(u) * Math.Cos(v)),
+                        (double)(r * Math.Sin(v)),
+                        1),
+                        i, j);
+
                     //PointStorage.Add(new Point3D(
                     //    150 * Math.Sin(u) * Math.Cos(v),
                     //    150 * Math.Sin(u) * Math.Sin(v),
@@ -63,9 +64,8 @@ namespace Lab1Gluschenko
                 u += du;
             }
 
+            // Создание полигонов
             List<Triangle> triangles = new List<Triangle>();
-
-            var a = PointStorage.Get2DArray();
             for (int i = 0; i < uN; i++)
             {
                 for (int j = 0; j < vN; j++)
@@ -74,11 +74,10 @@ namespace Lab1Gluschenko
                     triangles.Add(new Triangle((i + 1, j + 1), (i, j + 1), (i + 1, j)));
                 }
             }
-
             return triangles;
         }
 
-        public static Point2D[][] Proection(Point3D[][] points, double psi, double hi, double fi, double uN, double vN)
+        public static Point2D[][] Proection(Point3D[][] points, double psi, double hi, double fi)
         {
             // Создание матриц поворота
             MatrixCalculation rotatedMatrix = new MatrixCalculation();
@@ -86,9 +85,7 @@ namespace Lab1Gluschenko
             rotatedMatrix.RotateY(hi);
             rotatedMatrix.RotateZ(fi);
 
-
-            Point3D[][] rotatedPoints = rotatedMatrix.CreateRotatedPointsArray(points, uN, vN);
-
+            Point3D[][] rotatedPoints = rotatedMatrix.CreateRotatedPointsArray(points);
             Point2D[][] screenPoints = rotatedMatrix.CreateScreenpoints(rotatedPoints);
             return screenPoints;
         }

@@ -7,11 +7,11 @@ namespace Lab1Gluschenko
 {
     public partial class Form1 : Form
     {
-        private readonly List<TrackBarWithTextBox> _tb_pairs = new List<TrackBarWithTextBox>();  // хранит объекты - пары: текстбокс + трекбар
-        private List<(string fieldType, int id, int value)> historyLog = new List<(string fieldType, int id, int value)>();  //  хранит историю действий пользователя
-        private List<(string fieldType, int id, int value)> futureHistoryLog = new List<(string fieldType, int id, int value)>();  // хранит события, которые пользователь откатил
-
         private List<Triangle> triangles;
+
+        private readonly List<TrackBarWithTextBox> _tb_pairs = new List<TrackBarWithTextBox>();  // хранит объекты - пары: текстбокс + трекбар
+        private readonly List<(string fieldType, int id, int value)> historyLog = new List<(string fieldType, int id, int value)>();  //  хранит историю действий пользователя
+        private readonly List<(string fieldType, int id, int value)> futureHistoryLog = new List<(string fieldType, int id, int value)>();  // хранит события, которые пользователь откатил
 
         private Color unColor = Color.Red;
         private Color outColor = Color.Blue;
@@ -23,8 +23,6 @@ namespace Lab1Gluschenko
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //List<String> elementNames = new List<String>() { "X", "Y", "Z", "U", "V", "LimitU", "LimitV", "R", "3", };
-
             // прослушивание событий
             _tb_pairs.Clear();
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarX, textBoxX, RefreshPictureBox, AddEventToHistoryLog, 0));
@@ -37,27 +35,25 @@ namespace Lab1Gluschenko
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarR, textBoxR, RefreshPictureBox, AddEventToHistoryLog, 7));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBar3, textBox3, RefreshPictureBox, AddEventToHistoryLog, 8));
 
-            // пенель цветов
+            // панель цветов
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorR1, textBoxColorR1, RefreshPictureBox, AddEventToHistoryLog, 9));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorG1, textBoxColorG1, RefreshPictureBox, AddEventToHistoryLog, 10));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorB1, textBoxColorB1, RefreshPictureBox, AddEventToHistoryLog, 11));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorR2, textBoxColorR2, RefreshPictureBox, AddEventToHistoryLog, 12));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorG2, textBoxColorG2, RefreshPictureBox, AddEventToHistoryLog, 13));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorB2, textBoxColorB2, RefreshPictureBox, AddEventToHistoryLog, 14));
-
-            panelColorOut.Location = panelColorUn.Location;
-            radioButtonUnColor.Checked = true;
-            panelColorOut.Visible = false;
-
             coloredPanel1.BackColor = unColor;
             coloredPanel2.BackColor = outColor;
-
             _tb_pairs[9].SetValue(unColor.R);
             _tb_pairs[10].SetValue(unColor.G);
             _tb_pairs[11].SetValue(unColor.B);
             _tb_pairs[12].SetValue(outColor.R);
             _tb_pairs[13].SetValue(outColor.G);
             _tb_pairs[14].SetValue(outColor.B);
+
+            panelColorOut.Location = panelColorUn.Location;
+            radioButtonUnColor.Checked = true;
+            panelColorOut.Visible = false;
 
             RefreshPictureBox();
         }
@@ -73,32 +69,31 @@ namespace Lab1Gluschenko
             // Перерисовывает предпросмотр цветов
             unColor = Color.FromArgb(_tb_pairs[9].GetValue(), _tb_pairs[10].GetValue(), _tb_pairs[11].GetValue());
             outColor = Color.FromArgb(_tb_pairs[12].GetValue(), _tb_pairs[13].GetValue(), _tb_pairs[14].GetValue());
-
             coloredPanel1.BackColor = unColor;
             coloredPanel2.BackColor = outColor;
 
+            // Получение всех необходимых параметров из формы
             double psi = _tb_pairs[0].GetValue();
             double hi = _tb_pairs[1].GetValue();
             double fi = _tb_pairs[2].GetValue();
             double uN = _tb_pairs[3].GetValue();
             double vN = _tb_pairs[4].GetValue();
-            double uMax = (double)_tb_pairs[5].GetValue() / 180.0 * Math.PI;
-            double vMax = (double)_tb_pairs[6].GetValue() / 180.0 * Math.PI;
+            double uMax = _tb_pairs[5].GetValue() / 180.0 * Math.PI;
+            double vMax = _tb_pairs[6].GetValue() / 180.0 * Math.PI;
             int R = _tb_pairs[7].GetValue();
-
-            new PointStorage(uN, vN);
-            triangles = Calculations.GeneratePointsAndTriangles(uN, vN, uMax, vMax, R);
-            Point2D[][] screenPoints = Calculations.Proection(PointStorage.Get2DArray(), psi, fi, hi, uN, vN);
-
+            int r = _tb_pairs[8].GetValue();
             int centerX = pictureBox1.Width / 2;
             int centerY = pictureBox1.Height / 2;
+
+            // получение массива спроецированных точек
+            Point2D[][] screenPoints = Generate2dFigure(uN, vN, uMax, vMax, psi, fi, hi, R, r);
+
 
             Bitmap bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             using (Graphics g = Graphics.FromImage(bitmap))
             {
                 foreach (Triangle triangle in triangles)
                 {
-                    //g.FillPolygon();
                     g.DrawLine(new Pen(Color.Black, 1),
                         (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].x + centerX),
                         (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].y + centerY),
@@ -123,6 +118,17 @@ namespace Lab1Gluschenko
                 }
             }
             pictureBox1.Image = bitmap;
+        }
+
+        private Point2D[][] Generate2dFigure(double uN, double vN, double uMax, double vMax, double psi, double fi, double hi, int R, int r)
+        {
+            /*
+             * Создание трёхмерной фигуры с последующей её проекцией на двухмерный холст для отрисовки
+             */
+
+            new PointStorage(uN, vN);
+            triangles = Calculations.GeneratePointsAndPolygons(uN, vN, uMax, vMax, R, r);
+            return Calculations.Proection(PointStorage.Get2DArray(), psi, fi, hi);
         }
 
         private void AddEventToHistoryLog(string fieldType, int id, int value)
@@ -200,6 +206,9 @@ namespace Lab1Gluschenko
 
         private void radioButtonColor_CheckedChanged(object sender, EventArgs e)
         {
+            /*
+             * Переключение панелей с выбором цвета
+             */
             if (radioButtonUnColor.Checked)
             {
                 panelColorUn.Visible = true;

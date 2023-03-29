@@ -358,12 +358,13 @@
             this.trackBar3.Location = new System.Drawing.Point(36, 63);
             this.trackBar3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.trackBar3.Maximum = 180;
-            this.trackBar3.Minimum = -180;
+            this.trackBar3.Minimum = 30;
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Size = new System.Drawing.Size(156, 45);
             this.trackBar3.TabIndex = 4;
             this.trackBar3.TabStop = false;
             this.trackBar3.UseWaitCursor = true;
+            this.trackBar3.Value = 120;
             // 
             // textBox3
             // 
