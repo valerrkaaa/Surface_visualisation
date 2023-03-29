@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab1Gluschenko
 {
@@ -47,8 +45,8 @@ namespace Lab1Gluschenko
             psi = psi * Math.PI / 180;
             List<List<double>> temp = new List<List<double>>() {
                 new List<double>{1, 0, 0, 0},
-                new List<double>{0, Math.Cos(psi), Math.Sin(psi), 0},
-                new List<double>{0, -Math.Sin(psi), Math.Cos(psi), 0},
+                new List<double>{0, Math.Cos(psi), -Math.Sin(psi), 0},
+                new List<double>{0, Math.Sin(psi), Math.Cos(psi), 0},
                 new List<double>{0, 0, 0, 1},
             };
             this._generalMatrix = MatrixMultiply(this._generalMatrix, temp);
@@ -76,7 +74,7 @@ namespace Lab1Gluschenko
             this._generalMatrix = MatrixMultiply(this._generalMatrix, temp);
         }
 
-        public Point3D[][] CreateRotatedPointsArray(Point3D[][] oldPoints, int uN, int vN)
+        public Point3D[][] CreateRotatedPointsArray(Point3D[][] oldPoints, double uN, double vN)
         {
             Point3D[][] rotatedPoints = new Point3D[oldPoints.Length][];
             for (int i = 0; i < oldPoints.Length; i++)

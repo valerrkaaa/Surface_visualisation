@@ -36,7 +36,7 @@ namespace Lab1Gluschenko
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarLimitV, textBoxLimitV, RefreshPictureBox, AddEventToHistoryLog, 6));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarR, textBoxR, RefreshPictureBox, AddEventToHistoryLog, 7));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBar3, textBox3, RefreshPictureBox, AddEventToHistoryLog, 8));
-            
+
             // пенель цветов
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorR1, textBoxColorR1, RefreshPictureBox, AddEventToHistoryLog, 9));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorG1, textBoxColorG1, RefreshPictureBox, AddEventToHistoryLog, 10));
@@ -77,20 +77,17 @@ namespace Lab1Gluschenko
             coloredPanel1.BackColor = unColor;
             coloredPanel2.BackColor = outColor;
 
-            int psi = _tb_pairs[0].GetValue();
-            int hi = _tb_pairs[1].GetValue();
-            int fi = _tb_pairs[2].GetValue();
-            int uN = _tb_pairs[3].GetValue();
-            int vN = _tb_pairs[4].GetValue();
-            int uMin = _tb_pairs[5].GetMinValue();
-            int uMax = uN;
-            int vMin = _tb_pairs[6].GetMinValue();
-            int vMax = vN;
-
-            //new MatrixCalculation().Test();
+            double psi = _tb_pairs[0].GetValue();
+            double hi = _tb_pairs[1].GetValue();
+            double fi = _tb_pairs[2].GetValue();
+            double uN = _tb_pairs[3].GetValue();
+            double vN = _tb_pairs[4].GetValue();
+            double uMax = (double)_tb_pairs[5].GetValue() / 180.0 * Math.PI;
+            double vMax = (double)_tb_pairs[6].GetValue() / 180.0 * Math.PI;
+            int R = _tb_pairs[7].GetValue();
 
             new PointStorage(uN, vN);
-            triangles = Calculations.GeneratePointsAndTriangles(uN, vN, uMax, vMax, uMin, vMin);
+            triangles = Calculations.GeneratePointsAndTriangles(uN, vN, uMax, vMax, R);
             Point2D[][] screenPoints = Calculations.Proection(PointStorage.Get2DArray(), psi, fi, hi, uN, vN);
 
             int centerX = pictureBox1.Width / 2;

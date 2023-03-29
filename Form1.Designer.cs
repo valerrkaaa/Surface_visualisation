@@ -231,7 +231,7 @@
             this.trackBarU.TabIndex = 0;
             this.trackBarU.TabStop = false;
             this.trackBarU.UseWaitCursor = true;
-            this.trackBarU.Value = 2;
+            this.trackBarU.Value = 20;
             // 
             // textBoxU
             // 
@@ -262,7 +262,7 @@
             this.trackBarV.TabIndex = 4;
             this.trackBarV.TabStop = false;
             this.trackBarV.UseWaitCursor = true;
-            this.trackBarV.Value = 2;
+            this.trackBarV.Value = 20;
             // 
             // textBoxV
             // 
@@ -327,12 +327,13 @@
             this.trackBarR.Location = new System.Drawing.Point(36, 22);
             this.trackBarR.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.trackBarR.Maximum = 180;
-            this.trackBarR.Minimum = -180;
+            this.trackBarR.Minimum = 30;
             this.trackBarR.Name = "trackBarR";
             this.trackBarR.Size = new System.Drawing.Size(156, 45);
             this.trackBarR.TabIndex = 0;
             this.trackBarR.TabStop = false;
             this.trackBarR.UseWaitCursor = true;
+            this.trackBarR.Value = 120;
             // 
             // textBoxR
             // 
@@ -645,14 +646,14 @@
             // 
             this.trackBarLimitU.Location = new System.Drawing.Point(36, 22);
             this.trackBarLimitU.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.trackBarLimitU.Maximum = 200;
+            this.trackBarLimitU.Maximum = 1440;
             this.trackBarLimitU.Minimum = 1;
             this.trackBarLimitU.Name = "trackBarLimitU";
             this.trackBarLimitU.Size = new System.Drawing.Size(156, 45);
             this.trackBarLimitU.TabIndex = 0;
             this.trackBarLimitU.TabStop = false;
             this.trackBarLimitU.UseWaitCursor = true;
-            this.trackBarLimitU.Value = 1;
+            this.trackBarLimitU.Value = 180;
             // 
             // textBoxLimitU
             // 
@@ -676,14 +677,14 @@
             // 
             this.trackBarLimitV.Location = new System.Drawing.Point(36, 63);
             this.trackBarLimitV.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.trackBarLimitV.Maximum = 200;
+            this.trackBarLimitV.Maximum = 1440;
             this.trackBarLimitV.Minimum = 1;
             this.trackBarLimitV.Name = "trackBarLimitV";
             this.trackBarLimitV.Size = new System.Drawing.Size(156, 45);
             this.trackBarLimitV.TabIndex = 4;
             this.trackBarLimitV.TabStop = false;
             this.trackBarLimitV.UseWaitCursor = true;
-            this.trackBarLimitV.Value = 1;
+            this.trackBarLimitV.Value = 360;
             // 
             // textBoxLimitV
             // 
@@ -851,4 +852,3 @@
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
-
