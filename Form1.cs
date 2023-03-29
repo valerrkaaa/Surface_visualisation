@@ -128,6 +128,7 @@ namespace Lab1Gluschenko
 
             new PointStorage(uN, vN);
             triangles = Calculations.GeneratePointsAndPolygons(uN, vN, uMax, vMax, R, r);
+            Calculations.FillColor(triangles);
             return Calculations.Proection(PointStorage.Get2DArray(), psi, fi, hi);
         }
 

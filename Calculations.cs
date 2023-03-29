@@ -77,6 +77,39 @@ namespace Lab1Gluschenko
             return triangles;
         }
 
+        public static void FillColor(List<Triangle> triangles)
+        {
+            NewellMethod(triangles);
+            //foreach (Triangle triangle in triangles)
+            //{
+            //    NewellMethod(
+            //        triangle
+            //        //PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j),
+            //        //PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j),
+            //        //PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j)
+            //        );
+            //}
+        }
+
+        private static void NewellMethod(List<Triangle> triangles)
+        {
+            double A = 0;
+            double B = 0;
+            double C = 0;
+
+            int i = 0;
+            int j = 0;
+            foreach (Triangle triangle in triangles)
+            {
+                if (i == triangles.Count - 1)
+                    j = 1;
+                else
+                    j = i + 1;
+                Point3D point = PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j);
+                A += ()
+            }
+        }
+
         public static Point2D[][] Proection(Point3D[][] points, double psi, double hi, double fi)
         {
             // Создание матриц поворота
