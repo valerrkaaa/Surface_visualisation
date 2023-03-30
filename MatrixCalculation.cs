@@ -99,7 +99,7 @@ namespace Lab1Gluschenko
             return rotatedPoints;
         }
 
-        public Point2D[][] CreateScreenpoints(Point3D[][] rotadedPoints)
+        public Point2D[][] CreateScreenpoints(Point3D[][] rotadedPoints, int centerX, int centerY)
         {
             /* 
              * Проецирует трёхмерные точки в двухмерные
@@ -119,6 +119,14 @@ namespace Lab1Gluschenko
                 for (int j = 0; j < rotadedPoints[0].Length; j++)
                 {
                     screenPoints[i][j] = Point2DMultiply(rotadedPoints[i][j], ones);
+                }
+            }
+            for (int i = 0; i < rotadedPoints.Length; i++)
+            {
+                for (int j = 0; j < rotadedPoints[0].Length; j++)
+                {
+                    screenPoints[i][j].x = screenPoints[i][j].x + centerX;
+                    screenPoints[i][j].y = screenPoints[i][j].y + centerY;
                 }
             }
             return screenPoints;

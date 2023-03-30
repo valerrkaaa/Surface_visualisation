@@ -78,21 +78,7 @@ namespace Lab1Gluschenko
             return triangles;
         }
 
-        public static void FillColor(List<Triangle> triangles, Color unColor, Color outColor)
-        {
-            NewellMethod(triangles, unColor, outColor);
-            //foreach (Triangle triangle in triangles)
-            //{
-            //    NewellMethod(
-            //        triangle
-            //        //PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j),
-            //        //PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j),
-            //        //PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j)
-            //        );
-            //}
-        }
-
-        private static void NewellMethod(List<Triangle> triangles, Color unColor, Color outColor)
+        public static void NewellMethod(List<Triangle> triangles)
         {
             /*
              * 
@@ -111,13 +97,14 @@ namespace Lab1Gluschenko
             double Nx;
             double Ny;
             double Nz;
+            double cos;
 
             foreach (Triangle triangle in triangles)
             {
                 Nx = (PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).y - PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).y) * (PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).z - PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).z);
                 Ny = (PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).z - PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).z) * (PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).x - PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).x);
                 Nz = (PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).x - PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).x) * (PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).y - PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).y);
-                
+
                 Nx += (PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).y - PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).y) * (PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).z - PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).z);
                 Ny += (PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).z - PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).z) * (PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).x - PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).x);
                 Nz += (PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).x - PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).x) * (PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).y - PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).y);
@@ -126,16 +113,15 @@ namespace Lab1Gluschenko
                 Ny += (PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).z - PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).z) * (PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).x - PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).x);
                 Nz += (PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).x - PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).x) * (PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).y - PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).y);
 
-                double cos = Nz / Math.Sqrt(Nx * Nx + Ny * Ny + Nz * Nz);
-
-                if (cos >= 0)
-                    triangle.FillColor(cos, unColor);
+                if (Math.Sqrt(Nx * Nx + Ny * Ny + Nz * Nz) != 0)
+                    cos = -Nz / Math.Sqrt(Nx * Nx + Ny * Ny + Nz * Nz);
                 else
-                    triangle.FillColor(cos, outColor);  // TODO может быть наоборот
+                    cos = 0;
+                triangle.FillColor(cos);
             }
         }
 
-        public static Point2D[][] Proection(Point3D[][] points, double psi, double hi, double fi)
+        public static Point2D[][] Proection(Point3D[][] points, double psi, double hi, double fi, int centerX, int centerY)
         {
             // Создание матриц поворота
             MatrixCalculation rotatedMatrix = new MatrixCalculation();
@@ -144,8 +130,37 @@ namespace Lab1Gluschenko
             rotatedMatrix.RotateZ(fi);
 
             Point3D[][] rotatedPoints = rotatedMatrix.CreateRotatedPointsArray(points);
-            Point2D[][] screenPoints = rotatedMatrix.CreateScreenpoints(rotatedPoints);
+            Point2D[][] screenPoints = rotatedMatrix.CreateScreenpoints(rotatedPoints, centerX, centerY);
             return screenPoints;
+        }
+
+        public static List<Triangle> TrianglesSort(List<Triangle> triangles)
+        {
+            List<Triangle> insideTriangle = new List<Triangle>();
+            List<Triangle> outsideTriangle = new List<Triangle>();
+
+            bool i = true;
+            foreach (Triangle triangle in triangles)
+            {
+                if (triangle.isOutColor)
+                    outsideTriangle.Add(triangle);
+                else
+                    insideTriangle.Add(triangle);
+                //i = !i;
+                //if (triangle.isOutColor)
+                //    if (i)
+                //        outsideTriangle.Add(triangle);
+                //    else
+                //        insideTriangle.Add(triangle);
+                //else
+                //    if(!i)
+                //        outsideTriangle.Add(triangle);
+                //    else
+                //        insideTriangle.Add(triangle);
+            }
+            insideTriangle.AddRange(outsideTriangle);
+
+            return insideTriangle;
         }
     }
 }

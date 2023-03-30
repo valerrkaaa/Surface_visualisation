@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculations.cs" />
+    <Compile Include="FigureColors.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -9,6 +9,7 @@ namespace Lab1Gluschenko
         public (int i, int j) point2Index;
         public (int i, int j) point3Index;
         public Color color;
+        public bool isOutColor;
 
         public Triangle((int i, int j) point1Index, (int i, int j) point2Index, (int i, int j) point3Index)
         {
@@ -17,17 +18,30 @@ namespace Lab1Gluschenko
             this.point3Index = point3Index;
         }
 
-        public void FillColor(double cos, Color color)
+        public void FillColor(double cos)
         {
             /*
              * Изменяет значение параметра цвета в соответствии с косинусом угла
              */
 
-            this.color = Color.FromArgb(
-                (int)cos * color.R,
-                (int)cos * color.G,
-                (int)cos * color.B
-                );
+            if (cos < 0)  // TODO может быть наоборот
+            {
+                isOutColor = false;
+                this.color = Color.FromArgb(
+                    (int)(-cos * FigureColors.inColor.R),
+                    (int)(-cos * FigureColors.inColor.G),
+                    (int)(-cos * FigureColors.inColor.B)
+                    );
+            }
+            else
+            {
+                isOutColor = true;
+                this.color = Color.FromArgb(
+                    (int)(cos * FigureColors.outColor.R),
+                    (int)(cos * FigureColors.outColor.G),
+                    (int)(cos * FigureColors.outColor.B)
+                    );
+            }
         }
     }
 }

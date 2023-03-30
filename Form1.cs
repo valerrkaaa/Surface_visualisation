@@ -13,9 +13,6 @@ namespace Lab1Gluschenko
         private readonly List<(string fieldType, int id, int value)> historyLog = new List<(string fieldType, int id, int value)>();  //  хранит историю действий пользователя
         private readonly List<(string fieldType, int id, int value)> futureHistoryLog = new List<(string fieldType, int id, int value)>();  // хранит события, которые пользователь откатил
 
-        private Color unColor = Color.Red;
-        private Color outColor = Color.Blue;
-
         public Form1()
         {
             InitializeComponent();
@@ -42,14 +39,14 @@ namespace Lab1Gluschenko
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorR2, textBoxColorR2, RefreshPictureBox, AddEventToHistoryLog, 12));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorG2, textBoxColorG2, RefreshPictureBox, AddEventToHistoryLog, 13));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorB2, textBoxColorB2, RefreshPictureBox, AddEventToHistoryLog, 14));
-            coloredPanel1.BackColor = unColor;
-            coloredPanel2.BackColor = outColor;
-            _tb_pairs[9].SetValue(unColor.R);
-            _tb_pairs[10].SetValue(unColor.G);
-            _tb_pairs[11].SetValue(unColor.B);
-            _tb_pairs[12].SetValue(outColor.R);
-            _tb_pairs[13].SetValue(outColor.G);
-            _tb_pairs[14].SetValue(outColor.B);
+            coloredPanel1.BackColor = FigureColors.inColor;
+            coloredPanel2.BackColor = FigureColors.outColor;
+            _tb_pairs[9].SetValue(FigureColors.inColor.R);
+            _tb_pairs[10].SetValue(FigureColors.inColor.G);
+            _tb_pairs[11].SetValue(FigureColors.inColor.B);
+            _tb_pairs[12].SetValue(FigureColors.outColor.R);
+            _tb_pairs[13].SetValue(FigureColors.outColor.G);
+            _tb_pairs[14].SetValue(FigureColors.outColor.B);
 
             panelColorOut.Location = panelColorUn.Location;
             radioButtonUnColor.Checked = true;
@@ -64,13 +61,11 @@ namespace Lab1Gluschenko
              * Отрисовывает картинку
              */
 
-            Console.WriteLine("refresh");
-
             // Перерисовывает предпросмотр цветов
-            unColor = Color.FromArgb(_tb_pairs[9].GetValue(), _tb_pairs[10].GetValue(), _tb_pairs[11].GetValue());
-            outColor = Color.FromArgb(_tb_pairs[12].GetValue(), _tb_pairs[13].GetValue(), _tb_pairs[14].GetValue());
-            coloredPanel1.BackColor = unColor;
-            coloredPanel2.BackColor = outColor;
+            FigureColors.inColor = Color.FromArgb(_tb_pairs[9].GetValue(), _tb_pairs[10].GetValue(), _tb_pairs[11].GetValue());
+            FigureColors.outColor = Color.FromArgb(_tb_pairs[12].GetValue(), _tb_pairs[13].GetValue(), _tb_pairs[14].GetValue());
+            coloredPanel1.BackColor = FigureColors.inColor;
+            coloredPanel2.BackColor = FigureColors.outColor;
 
             // Получение всех необходимых параметров из формы
             double psi = _tb_pairs[0].GetValue();
@@ -85,42 +80,70 @@ namespace Lab1Gluschenko
             int centerX = pictureBox1.Width / 2;
             int centerY = pictureBox1.Height / 2;
 
+            // Тип закраски
+            bool needFillColor = radioButtonFlat.Checked;
+
             // получение массива спроецированных точек
-            Point2D[][] screenPoints = Generate2dFigure(uN, vN, uMax, vMax, psi, fi, hi, R, r, unColor, outColor);
+            Point2D[][] screenPoints = Generate2dFigure(uN, vN, uMax, vMax, psi, fi, hi, R, r, centerX, centerY);
 
+            Draw(pictureBox1, screenPoints, needFillColor);
+        }
 
+        private void Draw(PictureBox pictureBox, Point2D[][] screenPoints, bool needFillColor)
+        {
             Bitmap bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             using (Graphics g = Graphics.FromImage(bitmap))
             {
-                foreach (Triangle triangle in triangles)
+                if (needFillColor)
                 {
-                    g.DrawLine(new Pen(Color.Black, 1),
-                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].x + centerX),
-                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].y + centerY),
+                    // Закраска цветом
 
-                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].x + centerX),
-                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].y + centerY)
-                        );
-                    g.DrawLine(new Pen(Color.Black, 1),
-                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].x + centerX),
-                        (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].y + centerY),
+                    Point[] poligons = new Point[3];
+                    List<Triangle> sorted_triangles = Calculations.TrianglesSort(triangles);
+                    foreach (Triangle triangle in sorted_triangles)
+                    {
+                        poligons = new Point[3];
 
-                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].x + centerX),
-                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].y + centerY)
-                        );
-                    g.DrawLine(new Pen(Color.Black, 1),
-                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].x + centerX),
-                        (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].y + centerY),
+                        poligons[0] = new Point((int)screenPoints[triangle.point1Index.i][triangle.point1Index.j].x, (int)screenPoints[triangle.point1Index.i][triangle.point1Index.j].y);
+                        poligons[1] = new Point((int)screenPoints[triangle.point2Index.i][triangle.point2Index.j].x, (int)screenPoints[triangle.point2Index.i][triangle.point2Index.j].y);
+                        poligons[2] = new Point((int)screenPoints[triangle.point3Index.i][triangle.point3Index.j].x, (int)screenPoints[triangle.point3Index.i][triangle.point3Index.j].y);
 
-                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].x + centerX),
-                        (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].y + centerY)
-                        );
+                        g.FillPolygon(new SolidBrush(triangle.color), poligons);
+                    }
+                }
+                else
+                {
+                    // Каркасный вид
+                    foreach (Triangle triangle in triangles)
+                    {
+                        g.DrawLine(new Pen(Color.Black, 1),
+                            (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].x),
+                            (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].y),
+
+                            (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].x),
+                            (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].y)
+                            );
+                        g.DrawLine(new Pen(Color.Black, 1),
+                            (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].x),
+                            (float)(screenPoints[triangle.point1Index.i][triangle.point1Index.j].y),
+
+                            (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].x),
+                            (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].y)
+                            );
+                        g.DrawLine(new Pen(Color.Black, 1),
+                            (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].x),
+                            (float)(screenPoints[triangle.point2Index.i][triangle.point2Index.j].y),
+
+                            (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].x),
+                            (float)(screenPoints[triangle.point3Index.i][triangle.point3Index.j].y)
+                            );
+                    }
                 }
             }
-            pictureBox1.Image = bitmap;
+            pictureBox.Image = bitmap;
         }
 
-        private Point2D[][] Generate2dFigure(double uN, double vN, double uMax, double vMax, double psi, double fi, double hi, int R, int r, Color unColor, Color outColor)
+        private Point2D[][] Generate2dFigure(double uN, double vN, double uMax, double vMax, double psi, double fi, double hi, int R, int r, int centerX, int centerY)
         {
             /*
              * Создание трёхмерной фигуры с последующей её проекцией на двухмерный холст для отрисовки
@@ -128,8 +151,8 @@ namespace Lab1Gluschenko
 
             new PointStorage(uN, vN);
             triangles = Calculations.GeneratePointsAndPolygons(uN, vN, uMax, vMax, R, r);
-            Calculations.FillColor(triangles, unColor, outColor);
-            return Calculations.Proection(PointStorage.Get2DArray(), psi, fi, hi);
+            Calculations.NewellMethod(triangles);
+            return Calculations.Proection(PointStorage.Get2DArray(), psi, fi, hi, centerX, centerY);
         }
 
         private void AddEventToHistoryLog(string fieldType, int id, int value)
@@ -210,6 +233,7 @@ namespace Lab1Gluschenko
             /*
              * Переключение панелей с выбором цвета
              */
+
             if (radioButtonUnColor.Checked)
             {
                 panelColorUn.Visible = true;
@@ -220,6 +244,11 @@ namespace Lab1Gluschenko
                 panelColorOut.Visible = true;
                 panelColorUn.Visible = false;
             }
+        }
+
+        private void radioButtonVisualizeType_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshPictureBox();
         }
     }
 }
