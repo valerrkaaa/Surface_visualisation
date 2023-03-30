@@ -5,10 +5,10 @@ namespace Lab1Gluschenko
 {
     class Point3D
     {
-        double x;
-        double y;
-        double z;
-        double w;
+        public double x;
+        public double y;
+        public double z;
+        public double w;
 
         public Point3D(double x, double y, double z, double w)
         {

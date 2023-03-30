@@ -86,7 +86,7 @@ namespace Lab1Gluschenko
             int centerY = pictureBox1.Height / 2;
 
             // получение массива спроецированных точек
-            Point2D[][] screenPoints = Generate2dFigure(uN, vN, uMax, vMax, psi, fi, hi, R, r);
+            Point2D[][] screenPoints = Generate2dFigure(uN, vN, uMax, vMax, psi, fi, hi, R, r, unColor, outColor);
 
 
             Bitmap bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -120,7 +120,7 @@ namespace Lab1Gluschenko
             pictureBox1.Image = bitmap;
         }
 
-        private Point2D[][] Generate2dFigure(double uN, double vN, double uMax, double vMax, double psi, double fi, double hi, int R, int r)
+        private Point2D[][] Generate2dFigure(double uN, double vN, double uMax, double vMax, double psi, double fi, double hi, int R, int r, Color unColor, Color outColor)
         {
             /*
              * Создание трёхмерной фигуры с последующей её проекцией на двухмерный холст для отрисовки
@@ -128,7 +128,7 @@ namespace Lab1Gluschenko
 
             new PointStorage(uN, vN);
             triangles = Calculations.GeneratePointsAndPolygons(uN, vN, uMax, vMax, R, r);
-            Calculations.FillColor(triangles);
+            Calculations.FillColor(triangles, unColor, outColor);
             return Calculations.Proection(PointStorage.Get2DArray(), psi, fi, hi);
         }
 

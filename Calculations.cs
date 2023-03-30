@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace Lab1Gluschenko
 {
@@ -77,9 +78,9 @@ namespace Lab1Gluschenko
             return triangles;
         }
 
-        public static void FillColor(List<Triangle> triangles)
+        public static void FillColor(List<Triangle> triangles, Color unColor, Color outColor)
         {
-            NewellMethod(triangles);
+            NewellMethod(triangles, unColor, outColor);
             //foreach (Triangle triangle in triangles)
             //{
             //    NewellMethod(
@@ -91,22 +92,46 @@ namespace Lab1Gluschenko
             //}
         }
 
-        private static void NewellMethod(List<Triangle> triangles)
+        private static void NewellMethod(List<Triangle> triangles, Color unColor, Color outColor)
         {
-            double A = 0;
-            double B = 0;
-            double C = 0;
+            /*
+             * 
+             * Nx = (point1.y - point2.y)*(point1.z + point2.z)
+             * 
+             * 
+             * 
+             * Nx = (point2.y - point3.y)*(point2.z + point3.z)
+             * 
+             * 
+             * 
+             * Nx = (point3.y - point1.y)*(point3.z + point1.z)
+             * 
+             */
 
-            int i = 0;
-            int j = 0;
+            double Nx;
+            double Ny;
+            double Nz;
+
             foreach (Triangle triangle in triangles)
             {
-                if (i == triangles.Count - 1)
-                    j = 1;
+                Nx = (PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).y - PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).y) * (PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).z - PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).z);
+                Ny = (PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).z - PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).z) * (PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).x - PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).x);
+                Nz = (PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).x - PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).x) * (PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).y - PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).y);
+                
+                Nx += (PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).y - PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).y) * (PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).z - PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).z);
+                Ny += (PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).z - PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).z) * (PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).x - PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).x);
+                Nz += (PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).x - PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).x) * (PointStorage.Get(triangle.point2Index.i, triangle.point2Index.j).y - PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).y);
+
+                Nx += (PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).y - PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).y) * (PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).z - PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).z);
+                Ny += (PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).z - PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).z) * (PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).x - PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).x);
+                Nz += (PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).x - PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).x) * (PointStorage.Get(triangle.point3Index.i, triangle.point3Index.j).y - PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j).y);
+
+                double cos = Nz / Math.Sqrt(Nx * Nx + Ny * Ny + Nz * Nz);
+
+                if (cos >= 0)
+                    triangle.FillColor(cos, unColor);
                 else
-                    j = i + 1;
-                Point3D point = PointStorage.Get(triangle.point1Index.i, triangle.point1Index.j);
-                A += ()
+                    triangle.FillColor(cos, outColor);  // TODO может быть наоборот
             }
         }
 
