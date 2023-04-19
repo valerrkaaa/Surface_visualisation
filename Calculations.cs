@@ -25,19 +25,19 @@ namespace Lab1Gluschenko
                     //    (double)(50 * Math.Cos(u)),
                     //    1),
                     //    i, j);
-                    
+
                     // sphere:
                     //PointStorage.Add(new Point3D(
-                      //  (double)(R * Math.Cos(u) * Math.Cos(v)),
-                        //(double)(R * Math.Sin(u) * Math.Cos(v)),
-                       // (double)(r * Math.Sin(v)),
-                       // 1),
-                       // i, j);
+                    //  (double)(R * Math.Cos(u) * Math.Cos(v)),
+                    //(double)(R * Math.Sin(u) * Math.Cos(v)),
+                    // (double)(r * Math.Sin(v)),
+                    // 1),
+                    // i, j);
 
                     PointStorage.Add(new Point3D(
-                        150 * Math.Sin(u) * Math.Cos(v),
-                        150 * Math.Sin(u) * Math.Sin(v),
-                        150 * Math.Cos(u),
+                        R * Math.Sin(u) * Math.Cos(v),
+                        R * Math.Sin(u) * Math.Sin(v),
+                        r * Math.Cos(u),
                         1),
                         i, j);
                     /*PointStorage.Add(new Point3D(
@@ -48,9 +48,9 @@ namespace Lab1Gluschenko
                         i, j);
                     */
                     //PointStorage.Add(new Point3D(
-                    //   2 *u * Math.Cos(u) * (Math.Cos(v) + 2),
-                    //   2 * u* Math.Sin(u) * (Math.Cos(v) + 2),
-                    //   2 * u * Math.Sin(v) - Math.Pow(((u+3)/8 * Math.PI), 2) - 50,
+                    //   2 * u * Math.Cos(u) * (Math.Cos(v) + 2),
+                    //   2 * u * Math.Sin(u) * (Math.Cos(v) + 2),
+                    //   2 * u * Math.Sin(v) - Math.Pow(((u + 3) / 8 * Math.PI), 2) - 50,
                     //   1),
                     //   i, j);
                     //PointStorage.Add(new Point3D(
