@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Lab1Gluschenko
@@ -148,11 +149,19 @@ namespace Lab1Gluschenko
             /*
              * Создание трёхмерной фигуры с последующей её проекцией на двухмерный холст для отрисовки
              */
+            MatrixCalculation rotatedMatrix = new MatrixCalculation();
+            rotatedMatrix.RotateX(psi);
+            rotatedMatrix.RotateY(hi);
+            rotatedMatrix.RotateZ(fi);
 
             new PointStorage(uN, vN);
             triangles = Calculations.GeneratePointsAndPolygons(uN, vN, uMax, vMax, R, r);
+
+            Point3D[][] rotatedPoints = rotatedMatrix.CreateRotatedPointsArray(PointStorage.Get2DArray());
+            
+
             Calculations.NewellMethod(triangles);
-            return Calculations.Proection(PointStorage.Get2DArray(), psi, fi, hi, centerX, centerY);
+            return Calculations.Proection(rotatedMatrix, rotatedPoints, psi, fi, hi, centerX, centerY);
         }
 
         private void AddEventToHistoryLog(string fieldType, int id, int value)

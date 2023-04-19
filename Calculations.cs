@@ -162,24 +162,19 @@ namespace Lab1Gluschenko
                 
 
                 if (Math.Sqrt(Nx * Nx + Ny * Ny + Nz * Nz) != 0)
-                    cos = Nz / Math.Sqrt(Nx * Nx + Ny * Ny + Nz * Nz);
+                    cos = Nz / (Math.Sqrt(Nx * Nx + Ny * Ny + Nz * Nz));
                 else
-                  cos = Nz;
+                  cos = 0;
                 triangle.FillColor(cos);
                 
             }
         }
 
-        public static Point2D[][] Proection(Point3D[][] points, double psi, double hi, double fi, int centerX, int centerY)
+        public static Point2D[][] Proection(MatrixCalculation rotatedMatrix, Point3D[][] points, double psi, double hi, double fi, int centerX, int centerY)
         {
             // Создание матриц поворота
-            MatrixCalculation rotatedMatrix = new MatrixCalculation();
-            rotatedMatrix.RotateX(psi);
-            rotatedMatrix.RotateY(hi);
-            rotatedMatrix.RotateZ(fi);
 
-            Point3D[][] rotatedPoints = rotatedMatrix.CreateRotatedPointsArray(points);
-            Point2D[][] screenPoints = rotatedMatrix.CreateScreenpoints(rotatedPoints, centerX, centerY);
+            Point2D[][] screenPoints = rotatedMatrix.CreateScreenpoints(points, centerX, centerY);
             return screenPoints;
         }
 
