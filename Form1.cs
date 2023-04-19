@@ -149,18 +149,18 @@ namespace Lab1Gluschenko
             /*
              * Создание трёхмерной фигуры с последующей её проекцией на двухмерный холст для отрисовки
              */
+            new PointStorage(uN, vN);
+            triangles = Calculations.GeneratePointsAndPolygons(uN, vN, uMax, vMax, R, r);
+
+
+            // Создание матриц поворота
             MatrixCalculation rotatedMatrix = new MatrixCalculation();
             rotatedMatrix.RotateX(psi);
             rotatedMatrix.RotateY(hi);
             rotatedMatrix.RotateZ(fi);
-
-            new PointStorage(uN, vN);
-            triangles = Calculations.GeneratePointsAndPolygons(uN, vN, uMax, vMax, R, r);
-
             Point3D[][] rotatedPoints = rotatedMatrix.CreateRotatedPointsArray(PointStorage.Get2DArray());
-            
 
-            Calculations.NewellMethod(triangles);
+            Calculations.NewellMethod(triangles, rotatedPoints);
             return Calculations.Proection(rotatedMatrix, rotatedPoints, psi, fi, hi, centerX, centerY);
         }
 
