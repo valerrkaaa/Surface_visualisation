@@ -24,7 +24,7 @@ namespace Lab1Gluschenko
              * Изменяет значение параметра цвета в соответствии с косинусом угла
              */
 
-            if (cos < 0)  // TODO может быть наоборот
+            if (cos <= 0)  // TODO может быть наоборот
             {
                 isOutColor = false;
                 this.color = Color.FromArgb(
