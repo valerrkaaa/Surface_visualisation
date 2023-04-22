@@ -32,7 +32,16 @@ namespace Lab1Gluschenko
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarLimitV, textBoxLimitV, RefreshPictureBox, AddEventToHistoryLog, 6));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarR, textBoxR, RefreshPictureBox, AddEventToHistoryLog, 7));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBar3, textBox3, RefreshPictureBox, AddEventToHistoryLog, 8));
-            _tb_pairs[0].SetValue(20);
+
+            // установка значений по умолчанию для элементов управления
+            _tb_pairs[0].SetValue(20);  // X
+            _tb_pairs[3].SetValue(20);  // U
+            _tb_pairs[4].SetValue(20);  // V
+            _tb_pairs[5].SetValue(180);  // LimitU
+            _tb_pairs[6].SetValue(360);  // LimitV
+            _tb_pairs[7].SetValue(120);  // R
+            _tb_pairs[8].SetValue(120);  // r
+
             // панель цветов
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorR1, textBoxColorR1, RefreshPictureBox, AddEventToHistoryLog, 9));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorG1, textBoxColorG1, RefreshPictureBox, AddEventToHistoryLog, 10));
@@ -40,6 +49,8 @@ namespace Lab1Gluschenko
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorR2, textBoxColorR2, RefreshPictureBox, AddEventToHistoryLog, 12));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorG2, textBoxColorG2, RefreshPictureBox, AddEventToHistoryLog, 13));
             _tb_pairs.Add(new TrackBarWithTextBox(trackBarColorB2, textBoxColorB2, RefreshPictureBox, AddEventToHistoryLog, 14));
+            
+            // значения по умолчанию для ползунков с цветом
             coloredPanel1.BackColor = FigureColors.inColor;
             coloredPanel2.BackColor = FigureColors.outColor;
             _tb_pairs[9].SetValue(FigureColors.inColor.R);
@@ -83,14 +94,16 @@ namespace Lab1Gluschenko
 
             // Тип закраски
             bool needFillColor = radioButtonFlat.Checked;
+            // Нужно ли отрисовывать треугольники в правильном порядке
+            bool needSort = radioButton3.Checked;
 
             // получение массива спроецированных точек
             Point2D[][] screenPoints = Generate2dFigure(uN, vN, uMax, vMax, psi, fi, hi, R, r, centerX, centerY);
 
-            Draw(pictureBox1, screenPoints, needFillColor);
+            Draw(pictureBox1, screenPoints, needFillColor, needSort);
         }
 
-        private void Draw(PictureBox pictureBox, Point2D[][] screenPoints, bool needFillColor)
+        private void Draw(PictureBox pictureBox, Point2D[][] screenPoints, bool needFillColor, bool needSort)
         {
             Bitmap bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             using (Graphics g = Graphics.FromImage(bitmap))
@@ -98,9 +111,8 @@ namespace Lab1Gluschenko
                 if (needFillColor)
                 {
                     // Закраска цветом
-
                     Point[] poligons = new Point[3];
-                    List<Triangle> sorted_triangles = Calculations.TrianglesSort(triangles);
+                    List<Triangle> sorted_triangles = Calculations.TrianglesSort(triangles, needSort);
                     foreach (Triangle triangle in sorted_triangles)
                     {
                         poligons = new Point[3];
@@ -149,6 +161,8 @@ namespace Lab1Gluschenko
             /*
              * Создание трёхмерной фигуры с последующей её проекцией на двухмерный холст для отрисовки
              */
+
+            // создание точек и треугольников
             new PointStorage(uN, vN);
             triangles = Calculations.GeneratePointsAndPolygons(uN, vN, uMax, vMax, R, r);
 
@@ -160,7 +174,10 @@ namespace Lab1Gluschenko
             rotatedMatrix.RotateZ(fi);
             Point3D[][] rotatedPoints = rotatedMatrix.CreateRotatedPointsArray(PointStorage.Get2DArray());
 
+            // окраска
             Calculations.NewellMethod(triangles, rotatedPoints);
+
+            // проецирование на 2д плоскость
             return Calculations.Proection(rotatedMatrix, rotatedPoints, psi, fi, hi, centerX, centerY);
         }
 
@@ -256,6 +273,11 @@ namespace Lab1Gluschenko
         }
 
         private void radioButtonVisualizeType_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshPictureBox();
+        }
+
+        private void radioButtonSortSelection_CheckedChanged(object sender, EventArgs e)
         {
             RefreshPictureBox();
         }
