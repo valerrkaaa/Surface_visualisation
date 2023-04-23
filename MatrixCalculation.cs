@@ -5,6 +5,10 @@ namespace Lab1Gluschenko
 {
     class MatrixCalculation
     {
+        double old_psi = 0;
+        double old_hi = 0;
+        double old_fi = 0;
+
         private List<List<double>> _generalMatrix = new List<List<double>>() {
             new List<double>{1, 0, 0, 0},
             new List<double>{0, 1, 0, 0},
@@ -46,16 +50,19 @@ namespace Lab1Gluschenko
             return outputArray;
         }
 
+       
         public void RotateX(double psi)
         {
             // матрица поворотов по оси X
+            
             psi = psi * Math.PI / 180;
             List<List<double>> temp = new List<List<double>>() {
                 new List<double>{1, 0, 0, 0},
-                new List<double>{0, Math.Cos(psi), -Math.Sin(psi), 0},
-                new List<double>{0, Math.Sin(psi), Math.Cos(psi), 0},
+                new List<double>{0, Math.Cos(psi - old_psi) , Math.Sin(psi - old_psi) , 0},
+                new List<double>{0, -Math.Sin(psi - old_psi) , Math.Cos(psi - old_psi), 0},
                 new List<double>{0, 0, 0, 1},
             };
+            old_psi = psi;
             this._generalMatrix = MatrixMultiply(this._generalMatrix, temp);
         }
         public void RotateY(double hi)
@@ -63,11 +70,12 @@ namespace Lab1Gluschenko
             // матрица поворотов по оси Y
             hi = hi * Math.PI / 180;
             List<List<double>> temp = new List<List<double>>() {
-                new List<double>{Math.Cos(hi), 0, -Math.Sin(hi), 0},
+                new List<double>{Math.Cos(hi - old_hi) , 0, -Math.Sin(hi - old_hi), 0},
                 new List<double>{0, 1, 0, 0},
-                new List<double>{Math.Sin(hi), 0, Math.Cos(hi), 0},
+                new List<double>{Math.Sin(hi - old_hi), 0, Math.Cos(hi - old_hi) , 0},
                 new List<double>{0, 0, 0, 1},
             };
+            old_hi = hi;
             this._generalMatrix = MatrixMultiply(this._generalMatrix, temp);
         }
         public void RotateZ(double fi)
@@ -75,11 +83,12 @@ namespace Lab1Gluschenko
             // матрица поворотов по оси Z
             fi = fi * Math.PI / 180;
             List<List<double>> temp = new List<List<double>>() {
-                new List<double>{Math.Cos(fi), Math.Sin(fi), 0, 0},
-                new List<double>{-Math.Sin(fi), Math.Cos(fi), 0, 0},
+                new List<double>{Math.Cos(fi - old_fi) , Math.Sin(fi - old_fi), 0, 0},
+                new List<double>{-Math.Sin(fi - old_fi) , Math.Cos(fi - old_fi), 0, 0},
                 new List<double>{0, 0, 1, 0},
                 new List<double>{0, 0, 0, 1},
             };
+            old_fi= fi;
             this._generalMatrix = MatrixMultiply(this._generalMatrix, temp);
         }
 

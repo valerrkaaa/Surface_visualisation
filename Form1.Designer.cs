@@ -35,12 +35,19 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxZ = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.trackBarZ = new System.Windows.Forms.TrackBar();
+            this.trackBarY = new System.Windows.Forms.TrackBar();
+            this.trackBarX = new System.Windows.Forms.TrackBar();
             this.textBoxU = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxV = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.trackBarV = new System.Windows.Forms.TrackBar();
+            this.trackBarU = new System.Windows.Forms.TrackBar();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.trackBar3 = new System.Windows.Forms.TrackBar();
+            this.trackBarR = new System.Windows.Forms.TrackBar();
             this.label11 = new System.Windows.Forms.Label();
             this.textBoxR = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -48,6 +55,9 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.coloredPanel2 = new System.Windows.Forms.Panel();
             this.panelColorOut = new System.Windows.Forms.Panel();
+            this.trackBarColorB2 = new System.Windows.Forms.TrackBar();
+            this.trackBarColorG2 = new System.Windows.Forms.TrackBar();
+            this.trackBarColorR2 = new System.Windows.Forms.TrackBar();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxColorG2 = new System.Windows.Forms.TextBox();
@@ -55,6 +65,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxColorR2 = new System.Windows.Forms.TextBox();
             this.panelColorUn = new System.Windows.Forms.Panel();
+            this.trackBarColorB1 = new System.Windows.Forms.TrackBar();
+            this.trackBarColorG1 = new System.Windows.Forms.TrackBar();
+            this.trackBarColorR1 = new System.Windows.Forms.TrackBar();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.textBoxColorG1 = new System.Windows.Forms.TextBox();
@@ -69,54 +82,41 @@
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxLimitV = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.trackBarLimitV = new System.Windows.Forms.TrackBar();
+            this.trackBarLimitU = new System.Windows.Forms.TrackBar();
             this.buttonUndo = new System.Windows.Forms.Button();
             this.buttonRedo = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.radioButtonFlat = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.trackBarX = new System.Windows.Forms.TrackBar();
-            this.trackBarY = new System.Windows.Forms.TrackBar();
-            this.trackBarZ = new System.Windows.Forms.TrackBar();
-            this.trackBarU = new System.Windows.Forms.TrackBar();
-            this.trackBarV = new System.Windows.Forms.TrackBar();
-            this.trackBarLimitU = new System.Windows.Forms.TrackBar();
-            this.trackBarLimitV = new System.Windows.Forms.TrackBar();
-            this.trackBarR = new System.Windows.Forms.TrackBar();
-            this.trackBar3 = new System.Windows.Forms.TrackBar();
-            this.trackBarColorR1 = new System.Windows.Forms.TrackBar();
-            this.trackBarColorG1 = new System.Windows.Forms.TrackBar();
-            this.trackBarColorB1 = new System.Windows.Forms.TrackBar();
-            this.trackBarColorR2 = new System.Windows.Forms.TrackBar();
-            this.trackBarColorG2 = new System.Windows.Forms.TrackBar();
-            this.trackBarColorB2 = new System.Windows.Forms.TrackBar();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarU)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarR)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.panelColorOut.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorB2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorG2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorR2)).BeginInit();
             this.panelColorUn.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorB1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorG1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorR1)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarLimitV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarLimitU)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarU)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarLimitU)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarLimitV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarR)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorR1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorG1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorB1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorR2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorG2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorB2)).BeginInit();
             this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -134,7 +134,7 @@
             // 
             this.textBoxX.Location = new System.Drawing.Point(363, 26);
             this.textBoxX.Name = "textBoxX";
-            this.textBoxX.Size = new System.Drawing.Size(41, 26);
+            this.textBoxX.Size = new System.Drawing.Size(41, 30);
             this.textBoxX.TabIndex = 2;
             this.textBoxX.Text = "0";
             // 
@@ -152,7 +152,7 @@
             // 
             this.textBoxY.Location = new System.Drawing.Point(363, 67);
             this.textBoxY.Name = "textBoxY";
-            this.textBoxY.Size = new System.Drawing.Size(41, 26);
+            this.textBoxY.Size = new System.Drawing.Size(41, 30);
             this.textBoxY.TabIndex = 5;
             this.textBoxY.Text = "0";
             // 
@@ -170,7 +170,7 @@
             // 
             this.textBoxZ.Location = new System.Drawing.Point(363, 112);
             this.textBoxZ.Name = "textBoxZ";
-            this.textBoxZ.Size = new System.Drawing.Size(41, 26);
+            this.textBoxZ.Size = new System.Drawing.Size(41, 30);
             this.textBoxZ.TabIndex = 8;
             this.textBoxZ.Text = "0";
             // 
@@ -192,11 +192,38 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Углы поворота";
             // 
+            // trackBarZ
+            // 
+            this.trackBarZ.Location = new System.Drawing.Point(35, 108);
+            this.trackBarZ.Maximum = 180;
+            this.trackBarZ.Minimum = -180;
+            this.trackBarZ.Name = "trackBarZ";
+            this.trackBarZ.Size = new System.Drawing.Size(321, 56);
+            this.trackBarZ.TabIndex = 12;
+            // 
+            // trackBarY
+            // 
+            this.trackBarY.Location = new System.Drawing.Point(35, 62);
+            this.trackBarY.Maximum = 180;
+            this.trackBarY.Minimum = -180;
+            this.trackBarY.Name = "trackBarY";
+            this.trackBarY.Size = new System.Drawing.Size(321, 56);
+            this.trackBarY.TabIndex = 11;
+            // 
+            // trackBarX
+            // 
+            this.trackBarX.Location = new System.Drawing.Point(35, 22);
+            this.trackBarX.Maximum = 180;
+            this.trackBarX.Minimum = -180;
+            this.trackBarX.Name = "trackBarX";
+            this.trackBarX.Size = new System.Drawing.Size(321, 56);
+            this.trackBarX.TabIndex = 10;
+            // 
             // textBoxU
             // 
             this.textBoxU.Location = new System.Drawing.Point(363, 26);
             this.textBoxU.Name = "textBoxU";
-            this.textBoxU.Size = new System.Drawing.Size(41, 26);
+            this.textBoxU.Size = new System.Drawing.Size(41, 30);
             this.textBoxU.TabIndex = 2;
             this.textBoxU.Text = "0";
             // 
@@ -214,7 +241,7 @@
             // 
             this.textBoxV.Location = new System.Drawing.Point(363, 67);
             this.textBoxV.Name = "textBoxV";
-            this.textBoxV.Size = new System.Drawing.Size(41, 26);
+            this.textBoxV.Size = new System.Drawing.Size(41, 30);
             this.textBoxV.TabIndex = 5;
             this.textBoxV.Text = "0";
             // 
@@ -232,6 +259,26 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Количество сегментов";
+            // 
+            // trackBarV
+            // 
+            this.trackBarV.Location = new System.Drawing.Point(36, 63);
+            this.trackBarV.Maximum = 100;
+            this.trackBarV.Minimum = 2;
+            this.trackBarV.Name = "trackBarV";
+            this.trackBarV.Size = new System.Drawing.Size(321, 56);
+            this.trackBarV.TabIndex = 14;
+            this.trackBarV.Value = 2;
+            // 
+            // trackBarU
+            // 
+            this.trackBarU.Location = new System.Drawing.Point(36, 22);
+            this.trackBarU.Maximum = 100;
+            this.trackBarU.Minimum = 2;
+            this.trackBarU.Name = "trackBarU";
+            this.trackBarU.Size = new System.Drawing.Size(321, 56);
+            this.trackBarU.TabIndex = 13;
+            this.trackBarU.Value = 2;
             // 
             // label6
             // 
@@ -258,6 +305,26 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Радиусы";
             // 
+            // trackBar3
+            // 
+            this.trackBar3.Location = new System.Drawing.Point(35, 61);
+            this.trackBar3.Maximum = 180;
+            this.trackBar3.Minimum = 30;
+            this.trackBar3.Name = "trackBar3";
+            this.trackBar3.Size = new System.Drawing.Size(321, 56);
+            this.trackBar3.TabIndex = 8;
+            this.trackBar3.Value = 30;
+            // 
+            // trackBarR
+            // 
+            this.trackBarR.Location = new System.Drawing.Point(35, 22);
+            this.trackBarR.Maximum = 180;
+            this.trackBarR.Minimum = 30;
+            this.trackBarR.Name = "trackBarR";
+            this.trackBarR.Size = new System.Drawing.Size(321, 56);
+            this.trackBarR.TabIndex = 7;
+            this.trackBarR.Value = 30;
+            // 
             // label11
             // 
             this.label11.Location = new System.Drawing.Point(7, 22);
@@ -272,7 +339,7 @@
             // 
             this.textBoxR.Location = new System.Drawing.Point(363, 25);
             this.textBoxR.Name = "textBoxR";
-            this.textBoxR.Size = new System.Drawing.Size(41, 26);
+            this.textBoxR.Size = new System.Drawing.Size(41, 30);
             this.textBoxR.TabIndex = 2;
             this.textBoxR.Text = "0";
             // 
@@ -290,7 +357,7 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(363, 66);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(41, 26);
+            this.textBox3.Size = new System.Drawing.Size(41, 30);
             this.textBox3.TabIndex = 5;
             this.textBox3.Text = "0";
             // 
@@ -332,6 +399,30 @@
             this.panelColorOut.Size = new System.Drawing.Size(318, 156);
             this.panelColorOut.TabIndex = 11;
             // 
+            // trackBarColorB2
+            // 
+            this.trackBarColorB2.Location = new System.Drawing.Point(32, 100);
+            this.trackBarColorB2.Maximum = 255;
+            this.trackBarColorB2.Name = "trackBarColorB2";
+            this.trackBarColorB2.Size = new System.Drawing.Size(236, 56);
+            this.trackBarColorB2.TabIndex = 13;
+            // 
+            // trackBarColorG2
+            // 
+            this.trackBarColorG2.Location = new System.Drawing.Point(32, 55);
+            this.trackBarColorG2.Maximum = 255;
+            this.trackBarColorG2.Name = "trackBarColorG2";
+            this.trackBarColorG2.Size = new System.Drawing.Size(236, 56);
+            this.trackBarColorG2.TabIndex = 12;
+            // 
+            // trackBarColorR2
+            // 
+            this.trackBarColorR2.Location = new System.Drawing.Point(32, 14);
+            this.trackBarColorR2.Maximum = 255;
+            this.trackBarColorR2.Name = "trackBarColorR2";
+            this.trackBarColorR2.Size = new System.Drawing.Size(236, 56);
+            this.trackBarColorR2.TabIndex = 11;
+            // 
             // label8
             // 
             this.label8.Location = new System.Drawing.Point(4, 14);
@@ -356,7 +447,7 @@
             // 
             this.textBoxColorG2.Location = new System.Drawing.Point(274, 60);
             this.textBoxColorG2.Name = "textBoxColorG2";
-            this.textBoxColorG2.Size = new System.Drawing.Size(41, 26);
+            this.textBoxColorG2.Size = new System.Drawing.Size(41, 30);
             this.textBoxColorG2.TabIndex = 5;
             this.textBoxColorG2.Text = "0";
             // 
@@ -364,7 +455,7 @@
             // 
             this.textBoxColorB2.Location = new System.Drawing.Point(274, 102);
             this.textBoxColorB2.Name = "textBoxColorB2";
-            this.textBoxColorB2.Size = new System.Drawing.Size(41, 26);
+            this.textBoxColorB2.Size = new System.Drawing.Size(41, 30);
             this.textBoxColorB2.TabIndex = 8;
             this.textBoxColorB2.Text = "0";
             // 
@@ -382,7 +473,7 @@
             // 
             this.textBoxColorR2.Location = new System.Drawing.Point(274, 19);
             this.textBoxColorR2.Name = "textBoxColorR2";
-            this.textBoxColorR2.Size = new System.Drawing.Size(41, 26);
+            this.textBoxColorR2.Size = new System.Drawing.Size(41, 30);
             this.textBoxColorR2.TabIndex = 2;
             this.textBoxColorR2.Text = "0";
             // 
@@ -401,6 +492,30 @@
             this.panelColorUn.Name = "panelColorUn";
             this.panelColorUn.Size = new System.Drawing.Size(318, 150);
             this.panelColorUn.TabIndex = 10;
+            // 
+            // trackBarColorB1
+            // 
+            this.trackBarColorB1.Location = new System.Drawing.Point(32, 100);
+            this.trackBarColorB1.Maximum = 255;
+            this.trackBarColorB1.Name = "trackBarColorB1";
+            this.trackBarColorB1.Size = new System.Drawing.Size(236, 56);
+            this.trackBarColorB1.TabIndex = 12;
+            // 
+            // trackBarColorG1
+            // 
+            this.trackBarColorG1.Location = new System.Drawing.Point(32, 56);
+            this.trackBarColorG1.Maximum = 255;
+            this.trackBarColorG1.Name = "trackBarColorG1";
+            this.trackBarColorG1.Size = new System.Drawing.Size(236, 56);
+            this.trackBarColorG1.TabIndex = 11;
+            // 
+            // trackBarColorR1
+            // 
+            this.trackBarColorR1.Location = new System.Drawing.Point(32, 14);
+            this.trackBarColorR1.Maximum = 255;
+            this.trackBarColorR1.Name = "trackBarColorR1";
+            this.trackBarColorR1.Size = new System.Drawing.Size(236, 56);
+            this.trackBarColorR1.TabIndex = 10;
             // 
             // label14
             // 
@@ -426,7 +541,7 @@
             // 
             this.textBoxColorG1.Location = new System.Drawing.Point(274, 56);
             this.textBoxColorG1.Name = "textBoxColorG1";
-            this.textBoxColorG1.Size = new System.Drawing.Size(41, 26);
+            this.textBoxColorG1.Size = new System.Drawing.Size(41, 30);
             this.textBoxColorG1.TabIndex = 5;
             this.textBoxColorG1.Text = "0";
             // 
@@ -434,7 +549,7 @@
             // 
             this.textBoxColorB1.Location = new System.Drawing.Point(274, 101);
             this.textBoxColorB1.Name = "textBoxColorB1";
-            this.textBoxColorB1.Size = new System.Drawing.Size(41, 26);
+            this.textBoxColorB1.Size = new System.Drawing.Size(41, 30);
             this.textBoxColorB1.TabIndex = 8;
             this.textBoxColorB1.Text = "0";
             // 
@@ -452,7 +567,7 @@
             // 
             this.textBoxColorR1.Location = new System.Drawing.Point(274, 15);
             this.textBoxColorR1.Name = "textBoxColorR1";
-            this.textBoxColorR1.Size = new System.Drawing.Size(41, 26);
+            this.textBoxColorR1.Size = new System.Drawing.Size(41, 30);
             this.textBoxColorR1.TabIndex = 2;
             this.textBoxColorR1.Text = "0";
             // 
@@ -468,7 +583,7 @@
             this.radioButtonOutColor.AutoSize = true;
             this.radioButtonOutColor.Location = new System.Drawing.Point(371, 77);
             this.radioButtonOutColor.Name = "radioButtonOutColor";
-            this.radioButtonOutColor.Size = new System.Drawing.Size(136, 24);
+            this.radioButtonOutColor.Size = new System.Drawing.Size(166, 29);
             this.radioButtonOutColor.TabIndex = 13;
             this.radioButtonOutColor.TabStop = true;
             this.radioButtonOutColor.Text = "Внешний цвет";
@@ -480,7 +595,7 @@
             this.radioButtonUnColor.AutoSize = true;
             this.radioButtonUnColor.Location = new System.Drawing.Point(371, 37);
             this.radioButtonUnColor.Name = "radioButtonUnColor";
-            this.radioButtonUnColor.Size = new System.Drawing.Size(157, 24);
+            this.radioButtonUnColor.Size = new System.Drawing.Size(193, 29);
             this.radioButtonUnColor.TabIndex = 12;
             this.radioButtonUnColor.TabStop = true;
             this.radioButtonUnColor.Text = "Внутренний цвет";
@@ -501,7 +616,7 @@
             // 
             this.textBoxLimitU.Location = new System.Drawing.Point(363, 31);
             this.textBoxLimitU.Name = "textBoxLimitU";
-            this.textBoxLimitU.Size = new System.Drawing.Size(41, 26);
+            this.textBoxLimitU.Size = new System.Drawing.Size(41, 30);
             this.textBoxLimitU.TabIndex = 2;
             this.textBoxLimitU.Text = "0";
             // 
@@ -519,7 +634,7 @@
             // 
             this.textBoxLimitV.Location = new System.Drawing.Point(363, 72);
             this.textBoxLimitV.Name = "textBoxLimitV";
-            this.textBoxLimitV.Size = new System.Drawing.Size(41, 26);
+            this.textBoxLimitV.Size = new System.Drawing.Size(41, 30);
             this.textBoxLimitV.TabIndex = 5;
             this.textBoxLimitV.Text = "0";
             // 
@@ -537,6 +652,26 @@
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ограничения";
+            // 
+            // trackBarLimitV
+            // 
+            this.trackBarLimitV.Location = new System.Drawing.Point(35, 63);
+            this.trackBarLimitV.Maximum = 1440;
+            this.trackBarLimitV.Minimum = 1;
+            this.trackBarLimitV.Name = "trackBarLimitV";
+            this.trackBarLimitV.Size = new System.Drawing.Size(320, 56);
+            this.trackBarLimitV.TabIndex = 8;
+            this.trackBarLimitV.Value = 1;
+            // 
+            // trackBarLimitU
+            // 
+            this.trackBarLimitU.Location = new System.Drawing.Point(36, 22);
+            this.trackBarLimitU.Maximum = 1440;
+            this.trackBarLimitU.Minimum = 1;
+            this.trackBarLimitU.Name = "trackBarLimitU";
+            this.trackBarLimitU.Size = new System.Drawing.Size(320, 56);
+            this.trackBarLimitU.TabIndex = 7;
+            this.trackBarLimitU.Value = 1;
             // 
             // buttonUndo
             // 
@@ -582,7 +717,7 @@
             this.radioButtonFlat.AutoSize = true;
             this.radioButtonFlat.Location = new System.Drawing.Point(7, 56);
             this.radioButtonFlat.Name = "radioButtonFlat";
-            this.radioButtonFlat.Size = new System.Drawing.Size(127, 24);
+            this.radioButtonFlat.Size = new System.Drawing.Size(154, 29);
             this.radioButtonFlat.TabIndex = 1;
             this.radioButtonFlat.Text = "Flat-закраска";
             this.radioButtonFlat.UseVisualStyleBackColor = true;
@@ -594,147 +729,12 @@
             this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(7, 23);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(80, 24);
+            this.radioButton1.Size = new System.Drawing.Size(96, 29);
             this.radioButton1.TabIndex = 0;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Каркас";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButtonVisualizeType_CheckedChanged);
-            // 
-            // trackBarX
-            // 
-            this.trackBarX.Location = new System.Drawing.Point(35, 22);
-            this.trackBarX.Maximum = 180;
-            this.trackBarX.Minimum = -180;
-            this.trackBarX.Name = "trackBarX";
-            this.trackBarX.Size = new System.Drawing.Size(321, 45);
-            this.trackBarX.TabIndex = 10;
-            // 
-            // trackBarY
-            // 
-            this.trackBarY.Location = new System.Drawing.Point(35, 62);
-            this.trackBarY.Maximum = 180;
-            this.trackBarY.Minimum = -180;
-            this.trackBarY.Name = "trackBarY";
-            this.trackBarY.Size = new System.Drawing.Size(321, 45);
-            this.trackBarY.TabIndex = 11;
-            // 
-            // trackBarZ
-            // 
-            this.trackBarZ.Location = new System.Drawing.Point(35, 108);
-            this.trackBarZ.Maximum = 180;
-            this.trackBarZ.Minimum = -180;
-            this.trackBarZ.Name = "trackBarZ";
-            this.trackBarZ.Size = new System.Drawing.Size(321, 45);
-            this.trackBarZ.TabIndex = 12;
-            // 
-            // trackBarU
-            // 
-            this.trackBarU.Location = new System.Drawing.Point(36, 22);
-            this.trackBarU.Maximum = 100;
-            this.trackBarU.Minimum = 2;
-            this.trackBarU.Name = "trackBarU";
-            this.trackBarU.Size = new System.Drawing.Size(321, 45);
-            this.trackBarU.TabIndex = 13;
-            this.trackBarU.Value = 2;
-            // 
-            // trackBarV
-            // 
-            this.trackBarV.Location = new System.Drawing.Point(36, 63);
-            this.trackBarV.Maximum = 100;
-            this.trackBarV.Minimum = 2;
-            this.trackBarV.Name = "trackBarV";
-            this.trackBarV.Size = new System.Drawing.Size(321, 45);
-            this.trackBarV.TabIndex = 14;
-            this.trackBarV.Value = 2;
-            // 
-            // trackBarLimitU
-            // 
-            this.trackBarLimitU.Location = new System.Drawing.Point(36, 22);
-            this.trackBarLimitU.Maximum = 1440;
-            this.trackBarLimitU.Minimum = 1;
-            this.trackBarLimitU.Name = "trackBarLimitU";
-            this.trackBarLimitU.Size = new System.Drawing.Size(320, 45);
-            this.trackBarLimitU.TabIndex = 7;
-            this.trackBarLimitU.Value = 1;
-            // 
-            // trackBarLimitV
-            // 
-            this.trackBarLimitV.Location = new System.Drawing.Point(35, 63);
-            this.trackBarLimitV.Maximum = 1440;
-            this.trackBarLimitV.Minimum = 1;
-            this.trackBarLimitV.Name = "trackBarLimitV";
-            this.trackBarLimitV.Size = new System.Drawing.Size(320, 45);
-            this.trackBarLimitV.TabIndex = 8;
-            this.trackBarLimitV.Value = 1;
-            // 
-            // trackBarR
-            // 
-            this.trackBarR.Location = new System.Drawing.Point(35, 22);
-            this.trackBarR.Maximum = 180;
-            this.trackBarR.Minimum = 30;
-            this.trackBarR.Name = "trackBarR";
-            this.trackBarR.Size = new System.Drawing.Size(321, 45);
-            this.trackBarR.TabIndex = 7;
-            this.trackBarR.Value = 30;
-            // 
-            // trackBar3
-            // 
-            this.trackBar3.Location = new System.Drawing.Point(35, 61);
-            this.trackBar3.Maximum = 180;
-            this.trackBar3.Minimum = 30;
-            this.trackBar3.Name = "trackBar3";
-            this.trackBar3.Size = new System.Drawing.Size(321, 45);
-            this.trackBar3.TabIndex = 8;
-            this.trackBar3.Value = 30;
-            // 
-            // trackBarColorR1
-            // 
-            this.trackBarColorR1.Location = new System.Drawing.Point(32, 14);
-            this.trackBarColorR1.Maximum = 255;
-            this.trackBarColorR1.Name = "trackBarColorR1";
-            this.trackBarColorR1.Size = new System.Drawing.Size(236, 45);
-            this.trackBarColorR1.TabIndex = 10;
-            // 
-            // trackBarColorG1
-            // 
-            this.trackBarColorG1.Location = new System.Drawing.Point(32, 56);
-            this.trackBarColorG1.Maximum = 255;
-            this.trackBarColorG1.Name = "trackBarColorG1";
-            this.trackBarColorG1.Size = new System.Drawing.Size(236, 45);
-            this.trackBarColorG1.TabIndex = 11;
-            // 
-            // trackBarColorB1
-            // 
-            this.trackBarColorB1.Location = new System.Drawing.Point(32, 100);
-            this.trackBarColorB1.Maximum = 255;
-            this.trackBarColorB1.Name = "trackBarColorB1";
-            this.trackBarColorB1.Size = new System.Drawing.Size(236, 45);
-            this.trackBarColorB1.TabIndex = 12;
-            // 
-            // trackBarColorR2
-            // 
-            this.trackBarColorR2.Location = new System.Drawing.Point(32, 14);
-            this.trackBarColorR2.Maximum = 255;
-            this.trackBarColorR2.Name = "trackBarColorR2";
-            this.trackBarColorR2.Size = new System.Drawing.Size(236, 45);
-            this.trackBarColorR2.TabIndex = 11;
-            // 
-            // trackBarColorG2
-            // 
-            this.trackBarColorG2.Location = new System.Drawing.Point(32, 55);
-            this.trackBarColorG2.Maximum = 255;
-            this.trackBarColorG2.Name = "trackBarColorG2";
-            this.trackBarColorG2.Size = new System.Drawing.Size(236, 45);
-            this.trackBarColorG2.TabIndex = 12;
-            // 
-            // trackBarColorB2
-            // 
-            this.trackBarColorB2.Location = new System.Drawing.Point(32, 100);
-            this.trackBarColorB2.Maximum = 255;
-            this.trackBarColorB2.Name = "trackBarColorB2";
-            this.trackBarColorB2.Size = new System.Drawing.Size(236, 45);
-            this.trackBarColorB2.TabIndex = 13;
             // 
             // groupBox7
             // 
@@ -747,33 +747,32 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Порядок отрисовки";
             // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(7, 23);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(147, 24);
-            this.radioButton2.TabIndex = 0;
-            this.radioButton2.Text = "Без сортировки";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButtonSortSelection_CheckedChanged);
-            // 
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Checked = true;
             this.radioButton3.Location = new System.Drawing.Point(6, 53);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(139, 24);
+            this.radioButton3.Size = new System.Drawing.Size(170, 29);
             this.radioButton3.TabIndex = 1;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "С сортировкой";
             this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(7, 23);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(180, 29);
+            this.radioButton2.TabIndex = 0;
+            this.radioButton2.Text = "Без сортировки";
+            this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButtonSortSelection_CheckedChanged);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 569);
             this.Controls.Add(this.groupBox7);
@@ -793,36 +792,36 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarU)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarR)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.panelColorOut.ResumeLayout(false);
             this.panelColorOut.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorB2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorG2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorR2)).EndInit();
             this.panelColorUn.ResumeLayout(false);
             this.panelColorUn.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorB1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorG1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorR1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarLimitV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarLimitU)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarU)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarLimitU)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarLimitV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarR)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorR1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorG1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorB1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorR2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorG2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarColorB2)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
