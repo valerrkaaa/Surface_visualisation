@@ -81,7 +81,6 @@ namespace Lab1Gluschenko
         private int GetCorrectValue(string rawText)
         {
             // Возвращает текущее значение
-
             if (int.TryParse(rawText, out int correctValue))
                 return Math.Min(_trackBar.Maximum, Math.Max(_trackBar.Minimum, correctValue));
             else

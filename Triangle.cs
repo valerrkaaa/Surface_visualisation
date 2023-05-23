@@ -18,30 +18,24 @@ namespace Lab1Gluschenko
             this.point3Index = point3Index;
         }
 
-        public void FillColor(double cos)
+        public void FillInColor(double cos)
         {
-            /*
-             * Изменяет значение параметра цвета в соответствии с косинусом угла
-             */
+            isOutColor = false;
+            this.color = Color.FromArgb(
+                (int)(cos * FigureColors.inColor.R),
+                (int)(cos * FigureColors.inColor.G),
+                (int)(cos * FigureColors.inColor.B)
+                );
+        }
 
-            if (cos <= 0)
-            {
-                isOutColor = false;
-                this.color = Color.FromArgb(
-                    (int)(-cos * FigureColors.inColor.R),
-                    (int)(-cos * FigureColors.inColor.G),
-                    (int)(-cos * FigureColors.inColor.B)
-                    );
-            }
-            else
-            {
-                isOutColor = true;
-                this.color = Color.FromArgb(
-                    (int)(cos * FigureColors.outColor.R),
-                    (int)(cos * FigureColors.outColor.G),
-                    (int)(cos * FigureColors.outColor.B)
-                    );
-            }
+        public void FillOutColor(double cos)
+        {
+            isOutColor = true;
+            this.color = Color.FromArgb(
+                (int)(cos * FigureColors.outColor.R),
+                (int)(cos * FigureColors.outColor.G),
+                (int)(cos * FigureColors.outColor.B)
+                );
         }
     }
 }

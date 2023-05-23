@@ -175,10 +175,10 @@ namespace Lab1Gluschenko
             Point3D[][] rotatedPoints = rotatedMatrix.CreateRotatedPointsArray(PointStorage.Get2DArray());
 
             // окраска
-            Calculations.NewellMethod(triangles, rotatedPoints);
+            Calculations.SetColorForTriangles(triangles, rotatedPoints);
 
             // проецирование на 2д плоскость
-            return Calculations.Proection(rotatedMatrix, rotatedPoints, psi, fi, hi, centerX, centerY);
+            return Calculations.Proection(rotatedMatrix, rotatedPoints, centerX, centerY);
         }
 
         private void AddEventToHistoryLog(string fieldType, int id, int value)

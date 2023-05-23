@@ -5,9 +5,9 @@ namespace Lab1Gluschenko
 {
     class MatrixCalculation
     {
-        double old_psi = 0;
-        double old_hi = 0;
-        double old_fi = 0;
+        private double old_psi = 0;
+        private double old_hi = 0;
+        private double old_fi = 0;
 
         private List<List<double>> _generalMatrix = new List<List<double>>() {
             new List<double>{1, 0, 0, 0},
@@ -114,7 +114,7 @@ namespace Lab1Gluschenko
              * Проецирует трёхмерные точки в двухмерные
              */
 
-            List<List<double>> ones = new List<List<double>>() {
+            List<List<double>> pxoy = new List<List<double>>() {
                 new List<double>{1, 0, 0, 0},
                 new List<double>{0, 1, 0, 0},
                 new List<double>{0, 0, 0, 0},
@@ -127,13 +127,7 @@ namespace Lab1Gluschenko
                 screenPoints[i] = new Point2D[rotadedPoints[0].Length];
                 for (int j = 0; j < rotadedPoints[0].Length; j++)
                 {
-                    screenPoints[i][j] = Point2DMultiply(rotadedPoints[i][j], ones);
-                }
-            }
-            for (int i = 0; i < rotadedPoints.Length; i++)
-            {
-                for (int j = 0; j < rotadedPoints[0].Length; j++)
-                {
+                    screenPoints[i][j] = Point2DMultiply(rotadedPoints[i][j], pxoy);
                     screenPoints[i][j].x = screenPoints[i][j].x + centerX;
                     screenPoints[i][j].y = screenPoints[i][j].y + centerY;
                 }
